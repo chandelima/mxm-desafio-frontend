@@ -1,0 +1,44 @@
+<div class="background">
+  <img src="assets/mxm_logo_white.png" alt="Logo MXM" class="logo">
+  <div id="background"></div>
+  <div class="container">
+    <form [formGroup]="form">
+      <div class="form-field">
+        <label for="">Nome de usuário:</label>
+        <input type="text" placeholder="Nome de usuário"
+          formControlName="username" autofocus>
+        <small class="invalid-text">
+          <span *ngIf="verifyValidTouched('username')">
+            Nome de usuário deve ser informado
+          </span>
+        </small>
+      </div>
+      <div class="form-field">
+        <label for="">Senha:</label>
+        <input type="password" placeholder="Senha" formControlName="password">
+        <small class="invalid-text">
+          <span *ngIf="verifyValidTouched('password')">
+            Senha deve ser informado
+          </span>
+        </small>
+      </div>
+      <div class="form-field">
+        <label for="">Ambiente:</label>
+        <select name="select" formControlName="enviroment">
+          <option value="" selected disabled hidden>Escolha um ambiente</option>
+          <option value="valor1">Desenvolvimento</option>
+          <option value="valor2">Homologação</option>
+          <option value="valor3">Produção</option>
+        </select>
+        <small class="invalid-text">
+          <span *ngIf="verifyValidTouched('enviroment')">
+            Ambiente deve ser selecionado
+          </span>
+        </small>
+      </div>
+    </form>
+    <div class="btn-login">
+      <button (click)="onLogin()">Login</button>
+    </div>
+  </div>
+</div>
