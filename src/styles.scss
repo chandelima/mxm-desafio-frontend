@@ -1,5 +1,6 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import "/node_modules/primeflex/primeflex.css";
 
 
 * {
@@ -7,6 +8,28 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family), sans-serif;
+  color: var(--color);
+}
+
+a {
+  color: unset;
+  font-family: var(--font-family);
+
+  &:link {
+    text-decoration: none;
+  }
+
+  &:visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:active {
+    text-decoration: none;
+  }
 }
 
 #page {
@@ -19,7 +42,7 @@
     border-radius: .5rem;
     background-color: #FFF;
     margin: 1.25rem 0;
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     box-shadow: 0 .25rem .5rem #ecedef;
   }
 }

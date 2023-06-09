@@ -1,44 +1,18 @@
-import { Injectable } from '@angular/core';
-import { equitySubgroupMock } from './equity-subgroup.mock';
+import { Injectable, Injector } from '@angular/core';
+
 import { EquitySubgroupResponse } from '../interfaces/equity-subgroup-response';
-import { BehaviorSubject, Observable, of } from 'rxjs';
 import { EquitySubgroupRequest } from '../interfaces/equity-subgroup-request';
+import { CrudBaseService } from 'src/app/shared/services/crud-base.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EquitySubgroupService {
+export class EquitySubgroupService extends CrudBaseService<EquitySubgroupRequest, EquitySubgroupResponse> {
 
-  private data: EquitySubgroupResponse[] = [ ...equitySubgroupMock ];
-  readonly notifyier = new BehaviorSubject<boolean>(true);
+  override baseUrl = `${environment.apiURL}/equity-subgroup`;
 
-  constructor() { }
-
-  getAll(): Observable<EquitySubgroupResponse[]> {
-    return of(this.data);
-  }
-
-  getById(code: string): Observable<EquitySubgroupResponse> {
-    const subgroup = this.data.find(s => s.Codigo === code)!;
-
-    return of(subgroup);
-  }
-
-  add(subgroup: EquitySubgroupRequest): Observable<EquitySubgroupResponse> {
-    const code = crypto.randomUUID();
-    const subgroupToAdd: EquitySubgroupResponse = {
-      Codigo: code,
-      ...subgroup
-    };
-    this.data.push(subgroupToAdd);
-
-    return of(subgroupToAdd);
-  }
-
-  remove(code: string): Observable<null> {
-    const dataToStore = this.data.filter(s => s.Codigo !== code)
-    this.data = dataToStore;
-
-    return of(null);
+  constructor(protected override readonly injector: Injector) {
+    super(injector)
   }
 }
