@@ -14,4 +14,4 @@ RUN npm run build
 FROM nginx:1.23.3-alpine-slim
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/olixservices/ /usr/share/nginx/html
+COPY --from=build /app/dist/mxm-frontend/ /usr/share/nginx/html
