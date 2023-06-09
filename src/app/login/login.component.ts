@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { htmlElementValidatable } from '../shared/mixims/html-element-validatable.mixim';
+
+
+const LoginComponentBase = htmlElementValidatable(class {});
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent extends LoginComponentBase {
 
   form: FormGroup = this.formBuilder.group({
     username: [null, [Validators.min(3), Validators.required]],
@@ -15,23 +20,10 @@ export class LoginComponent {
 	});
 
   constructor(private readonly formBuilder: FormBuilder) {
+    super();
   }
 
   onLogin() {
     console.log("cliquei no login!");
   }
-
-  verifyValidTouched(control: string): boolean {
-		return (
-			!this.form!.get(control)!.value &&
-			this.form!.get(control)!.touched
-		);
-	}
-
-	applyControlInvalid(control: string): object {
-		return {
-			'ng-invalid': this.verifyValidTouched(control),
-			'ng-dirty': this.verifyValidTouched(control),
-		};
-	}
 }

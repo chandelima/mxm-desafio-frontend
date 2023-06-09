@@ -1,11 +1,14 @@
 nav {
   width: 15rem;
-  height: 100vh;
   padding: 1.5rem;
-  background-color: #263238;
   display: flex;
   flex-direction: column;
+  background-color: #263238;
+  color: #FFF;
   box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
 
 #logo-container {
@@ -20,14 +23,19 @@ nav {
 
 #links {
   margin-top: 3rem;
-  height: 100%;
   list-style-type: none;
   font-weight: 400;
   font-size: 1.125rem;
   color: #FFF;
+  height: 100%;
 
   li {
     transition: all 0.3s linear;
     padding-bottom: 2rem;
   }
+}
+
+#footer {
+  font-size: 0.8em;
+  font-weight: 300;
 }

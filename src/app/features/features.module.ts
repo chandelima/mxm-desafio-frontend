@@ -5,12 +5,14 @@ import { FeaturesRoutingModule } from './features-routing.module';
 import { EquitySubGroupComponent } from './equity-subgroup/equity-subgroup.component';
 import { FeaturesComponent } from './features.component';
 import { TemplateModule } from '../template/template.module';
+import { EquitySubgroupFormComponent } from './equity-subgroup/components/equity-subgroup-form/equity-subgroup-form.component';
 
 
 @NgModule({
   declarations: [
     EquitySubGroupComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    EquitySubgroupFormComponent
   ],
   imports: [
     CommonModule,
