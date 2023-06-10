@@ -46,30 +46,30 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
     };
   }
 
-  save() {
+  save(): void {
     if (!this.data)
       this.create(this.setDataToSave());
     else
       this.edit(this.data.id, this.setDataToSave());
 
     this.setFormVisible.emit(false);
-    this.form!.reset();
+    this.form.reset();
   }
 
-  create(data: EquitySubgroupRequest) {
-    const subscription = this.service!.create(data)
-      .subscribe(_ => this.service!.notify());
+  create(data: EquitySubgroupRequest): void {
+    const subscription = this.service.create(data)
+      .subscribe(_ => this.service.notify());
     this.addSubscription(subscription);
   }
 
-  edit(id: string, product: EquitySubgroupRequest) {
-    const subscription = this.service!.update(id, product)
-      .subscribe(_ => this.service!.notify());
+  edit(id: string, product: EquitySubgroupRequest): void {
+    const subscription = this.service.update(id, product)
+      .subscribe(_ => this.service.notify());
     this.addSubscription(subscription);
   }
 
   cancel(): void {
     this.setFormVisible.emit(false);
-    this.form!.reset();
+    this.form.reset();
   }
 }
