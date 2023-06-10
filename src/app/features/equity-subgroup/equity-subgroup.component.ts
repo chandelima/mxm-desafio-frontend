@@ -16,6 +16,7 @@ export class EquitySubGroupComponent extends EquitySubGroupComponentBase impleme
   dataList: EquitySubgroupResponse[] = [];
   searchInput = "";
   formVisible = false;
+  modalStatusVisible = true;
 
   constructor(
     private readonly service: EquitySubgroupService

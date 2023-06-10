@@ -6,13 +6,15 @@ import { EquitySubGroupComponent } from './equity-subgroup/equity-subgroup.compo
 import { FeaturesComponent } from './features.component';
 import { TemplateModule } from '../template/template.module';
 import { EquitySubgroupFormComponent } from './equity-subgroup/components/equity-subgroup-form/equity-subgroup-form.component';
+import { EquitySubgroupStatusComponent } from './equity-subgroup/components/equity-subgroup-status/equity-subgroup-status.component';
 
 
 @NgModule({
   declarations: [
     EquitySubGroupComponent,
     FeaturesComponent,
-    EquitySubgroupFormComponent
+    EquitySubgroupFormComponent,
+    EquitySubgroupStatusComponent
   ],
   imports: [
     CommonModule,

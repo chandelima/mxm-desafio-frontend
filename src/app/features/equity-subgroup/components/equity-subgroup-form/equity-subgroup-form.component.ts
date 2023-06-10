@@ -32,7 +32,7 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["data"]?.currentValue === undefined) return;
-    this.form!.patchValue({ ...changes["data"].currentValue  });
+    this.form.patchValue({ ...changes["data"].currentValue  });
   }
 
   ngOnDestroy(): void {

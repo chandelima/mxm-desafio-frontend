@@ -1,0 +1,51 @@
+<p-dialog header="Consulta Status do Processamento" [(visible)]="modalVisible"
+  [modal]="true" [draggable]="true" [responsive]="true" (onHide)="cancel()"
+  [style]="{ left: '7.5rem', maxWidth: '450px' }" [focusOnShow]="true"
+>
+  <ng-template pTemplate="body">
+    <form [formGroup]="form" ngSubmit="">
+      <!-- Código do Grupo Patrimonial Control -->
+      <div class="formgrid grid">
+          <div class="field col-12 md:col-10">
+              <label for="firstname6">Código do Grupo Patrimonial</label>
+              <input type="text" pInputText formControlName="codigo"
+              [ngClass]="applyControlInvalid('codigo')"
+              class="w-full" placeholder="Código do Subgrupo Patrimonial"
+              autofocus>
+              <small class="invalid-text">
+                <span *ngIf="verifyValidTouched('codigo')">
+                  Código do Subgrupo Patrimonial deve ser informado
+                </span>
+              </small>
+          </div>
+          <!-- Search Button -->
+          <div class="field col-12 md:col-1">
+              <label style="height: 1em;"></label>
+              <button pButton icon="ph-bold ph-magnifying-glass"
+                class="p-button-outlined" (click)="getStatus()"
+                [disabled]="verifyValidTouched('codigo')">
+              </button>
+          </div>
+      </div>
+    </form>
+    <!-- -->
+    <div *ngIf="status">
+      <p-messages severity="success" *ngIf="status === 'complete'">
+        <ng-template pTemplate>
+          <div class="flex align-items-center justify-content-center w-full">
+            <div class="mr-2">Status do Processamento: <strong>PROCESSADO</strong></div>
+            <img src="https://img.icons8.com/?size=512&id=63312&format=svg" width="32" />
+          </div>
+        </ng-template>
+      </p-messages>
+      <p-messages severity="warn" *ngIf="status === 'pending'">
+        <ng-template pTemplate>
+          <div class="flex align-items-center justify-content-center w-full">
+            <div class="mr-2">Status do Processamento: <strong>PENDENTE</strong></div>
+            <img src="https://img.icons8.com/?size=512&id=15850&format=svg" width="32" />
+          </div>
+        </ng-template>
+      </p-messages>
+    </div>
+  </ng-template>
+</p-dialog>

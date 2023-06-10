@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
@@ -26,6 +27,7 @@ const commonModules = [
 
 const primeNgModules = [
   ButtonModule,
+  CardModule,
   DialogModule,
   DividerModule,
   InputTextModule,
