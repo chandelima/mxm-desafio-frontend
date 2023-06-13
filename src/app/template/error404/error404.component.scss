@@ -1,0 +1,33 @@
+.background {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-image: url("/assets/login_bg.jpg");
+  background-position: center;
+  background-size: cover;
+
+  .logo {
+    width: 15rem;
+  }
+
+  .container {
+    background-color: #e2e9ee;
+    width: 22rem;
+    margin-top: 2rem;
+    border-radius: 1.25rem;
+    box-shadow: 10px 10px 10px 0.5px rgba(0, 0, 0, 0.05);
+    opacity: 0.90;
+    padding: 1.25rem;
+    display: flex;
+
+    .container-content {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

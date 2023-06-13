@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
 import { htmlElementValidatable } from 'src/app/shared/mixims/html-element-validatable.mixim';
 import { subscriptable } from 'src/app/shared/mixims/subscriptable.mixim';
 
@@ -10,23 +12,35 @@ const EquitySubgroupStatusComponentBase = htmlElementValidatable(subscriptable(c
   templateUrl: './equity-subgroup-status.component.html',
   styleUrls: ['./equity-subgroup-status.component.scss']
 })
-export class EquitySubgroupStatusComponent extends EquitySubgroupStatusComponentBase {
+export class EquitySubgroupStatusComponent extends EquitySubgroupStatusComponentBase implements OnInit {
 
   @Input() modalVisible = false;
-  @Output() setFormVisible = new EventEmitter<boolean>();
+  @Input() code?: string;
+  @Output() setModalVisible = new EventEmitter<boolean>();
   status?: string;
-  id?: string;
   form: FormGroup = this.formBuilder.group({
-		codigo: [null, Validators.required]
+		code: [null, Validators.required]
 	});
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     super();
   }
 
-  cancel(): void {
-    this.setFormVisible.emit(false);
-    this.id = undefined;
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.setCode(params.get('code')!);
+      console.log(this.code);
+    });
+  }
+
+  close(): void {
+    this.setModalVisible.emit(false);
+    this.code = undefined;
+    this.router.navigate(["/app/equity-subgroup"]);
   }
 
   getStatus(): void {
@@ -43,5 +57,10 @@ export class EquitySubgroupStatusComponent extends EquitySubgroupStatusComponent
         this.status = undefined;
         break;
     }
+  }
+
+  setCode(code: string): void {
+    this.code = code;
+    this.form.patchValue({ code });
   }
 }

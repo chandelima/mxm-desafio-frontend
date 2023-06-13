@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { EquitySubgroupService } from '../../services/equity-subgroup.service';
-import { EquitySubgroupRequest } from '../../interfaces/equity-subgroup-request';
-import { EquitySubgroupResponse } from '../../interfaces/equity-subgroup-response';
+import { EquitySubgroupRequestInterface } from '../../interfaces/equity-subgroup-request';
+import { EquitySubgroupResponseInterface } from '../../interfaces/equity-subgroup-response';
 import { htmlElementValidatable } from 'src/app/shared/mixims/html-element-validatable.mixim';
 import { subscriptable } from 'src/app/shared/mixims/subscriptable.mixim';
+import { Router } from '@angular/router';
 
 const EquitySubgroupFormComponentBase = htmlElementValidatable(subscriptable(class {}));
 
@@ -16,7 +17,7 @@ const EquitySubgroupFormComponentBase = htmlElementValidatable(subscriptable(cla
 })
 export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase {
 
-  @Input() data?: EquitySubgroupResponse;
+  @Input() data?: EquitySubgroupResponseInterface;
   @Output() setFormVisible = new EventEmitter<boolean>();
   @Input() formVisible = false;
   form: FormGroup = this.formBuilder.group({
@@ -27,7 +28,8 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: EquitySubgroupService
+    private service: EquitySubgroupService,
+    private router: Router
   ) { super(); }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -39,37 +41,17 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
     this.cleanSubscriptions();
   }
 
-  setDataToSave(): EquitySubgroupRequest {
+  setDataToSave(): EquitySubgroupRequestInterface {
     return {
+      Codigo: this.form.get("Descricao")!.value,
       Descricao: this.form.get("Descricao")!.value,
       CodigoGrupoPatrimonial: this.form.get("CodigoGrupoPatrimonial")!.value
     };
   }
 
-  save(): void {
-    if (!this.data)
-      this.create(this.setDataToSave());
-    else
-      this.edit(this.data.id, this.setDataToSave());
-
+  close(): void {
     this.setFormVisible.emit(false);
     this.form.reset();
-  }
-
-  create(data: EquitySubgroupRequest): void {
-    const subscription = this.service.create(data)
-      .subscribe(_ => this.service.notify());
-    this.addSubscription(subscription);
-  }
-
-  edit(id: string, product: EquitySubgroupRequest): void {
-    const subscription = this.service.update(id, product)
-      .subscribe(_ => this.service.notify());
-    this.addSubscription(subscription);
-  }
-
-  cancel(): void {
-    this.setFormVisible.emit(false);
-    this.form.reset();
+    this.router.navigate(['app/equity-subgroup']);
   }
 }

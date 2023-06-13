@@ -1,8 +1,10 @@
-import { SpecificRatingsResponse } from "./specific-ratings-response"
-
-export interface EquitySubgroupResponse {
+export interface EquitySubgroupResponseInterface {
   id: string;
   Descricao: string;
   CodigoGrupoPatrimonial: string;
-  ClassificacoesEspecificas?: SpecificRatingsResponse[];
+  ClassificacoesEspecificas: {
+    CodigoClassificacaoEspecifica: string;
+    CodigoDoGrupo: string;
+    CodigoDoSubGrupo: string;
+  }[];
 }

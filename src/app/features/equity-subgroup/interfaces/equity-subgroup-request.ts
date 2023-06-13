@@ -1,4 +1,5 @@
-export interface EquitySubgroupRequest {
+export interface EquitySubgroupRequestInterface {
+  Codigo: string;
   Descricao: string;
   CodigoGrupoPatrimonial: string;
 }

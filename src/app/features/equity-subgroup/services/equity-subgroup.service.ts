@@ -1,18 +1,26 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
-import { EquitySubgroupResponse } from '../interfaces/equity-subgroup-response';
-import { EquitySubgroupRequest } from '../interfaces/equity-subgroup-request';
-import { CrudBaseService } from 'src/app/shared/services/crud-base.service';
+import { EquitySubgroupRequestInterface } from '../interfaces/equity-subgroup-request';
 import { environment } from 'src/environments/environment';
+import { MxmRequestInterface } from 'src/app/shared/interfaces/mxm-payload.interface';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class EquitySubgroupService extends CrudBaseService<EquitySubgroupRequest, EquitySubgroupResponse> {
+export class EquitySubgroupService {
 
-  override baseUrl = `${environment.apiURL}/equity-subgroup`;
+  readonly notifyier = new BehaviorSubject<boolean>(true);
 
-  constructor(protected override readonly injector: Injector) {
-    super(injector)
+  private readonly baseUrl = `${environment.apiURL}/api/InterfacedoSubGrupoPatrimonial/ConsultaSubGrupoPatrimonial`;
+
+  constructor(private readonly http: HttpClient) { }
+
+  get(payload: MxmRequestInterface<EquitySubgroupRequestInterface>) {
+    const requestData = new HttpRequest("GET", this.baseUrl, payload);
+
+    return this.http.request(requestData);
   }
 }

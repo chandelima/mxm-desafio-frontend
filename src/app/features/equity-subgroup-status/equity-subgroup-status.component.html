@@ -1,0 +1,43 @@
+<div id="page">
+  <h2>Consulta Status do Processamento</h2>
+  <div id="page-container">
+    <form [formGroup]="form" ngSubmit="">
+      <!-- Código do Grupo Patrimonial Control -->
+      <div class="field">
+        <label>Código do Grupo Patrimonial</label>
+        <div class="flex flex-row">
+          <input formControlName="code" type="text" aria-describedby="username-help" pInputText autofocus
+            [ngClass]="applyControlInvalid('code')" placeholder="Código">
+          <button pButton icon="ph-bold ph-magnifying-glass" class="p-button-outlined col-1 ml-2" (click)="getStatus()"
+            [disabled]="!this.form.valid">
+          </button>
+        </div>
+        <small class="invalid-text">
+          <span *ngIf="verifyValidTouched('code')">
+            Código do Subgrupo Patrimonial deve ser informado
+          </span>
+        </small>
+      </div>
+      <!-- Status -->
+      <div *ngIf="status">
+        <hr>
+        <p-messages severity="success" *ngIf="status === 'complete'">
+          <ng-template pTemplate>
+            <div class="flex align-items-center justify-content-center w-full">
+              <div class="mr-2">Status do Processamento: <strong>PROCESSADO</strong></div>
+              <img src="https://img.icons8.com/?size=512&id=63312&format=svg" width="32" />
+            </div>
+          </ng-template>
+        </p-messages>
+        <p-messages severity="warn" *ngIf="status === 'pending'">
+          <ng-template pTemplate>
+            <div class="flex align-items-center justify-content-center w-full">
+              <div class="mr-2">Status do Processamento: <strong>PENDENTE</strong></div>
+              <img src="https://img.icons8.com/?size=512&id=15850&format=svg" width="32" />
+            </div>
+          </ng-template>
+        </p-messages>
+      </div>
+    </form>
+  </div>
+</div>
