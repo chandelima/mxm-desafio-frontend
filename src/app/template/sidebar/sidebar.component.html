@@ -3,12 +3,14 @@
     <img id="logo" src="assets/mxm_logo_white.png" alt="">
   </div>
   <ul id="links">
-    <li>Home</li>
-    <li>Consulta Status</li>
+    <li [routerLink]="['/app/equity-subgroup']"
+      [routerLinkActive]="['active']">
+        Home
+    </li>
+    <li [routerLink]="['/app/equity-subgroup-status']"
+      [routerLinkActive]="['active']">
+        Consulta Status
+    </li>
   </ul>
-  <div id="footer">
-    <p>Usuário conectado: XXXXX</p>
-    <p>Ambiente: XXXXX</p>
-    <a href="">Logddsdout</a>
-  </div>
+  <!-- <app-authentication></app-authentication> -->
 </nav>

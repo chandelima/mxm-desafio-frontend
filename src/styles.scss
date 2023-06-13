@@ -3,6 +3,11 @@
 @import "/node_modules/primeflex/primeflex.css";
 
 
+:root {
+  --color-mxm-blue: #092947;
+  --color-mxm-orange: #fe5536;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -30,6 +35,15 @@ a {
   &:active {
     text-decoration: none;
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-mxm-blue);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #DDD;
 }
 
 #page {

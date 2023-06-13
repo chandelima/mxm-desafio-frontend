@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <h4 class="text-0 font-medium">Dados de Acesso:</h4>
+  <div class="flex flex-column pt-2 opacity-90">
+    <input pInputText id="username" class="p-inputtext-sm" placeholder="Nome de usuário" autofocus
+      (change)="getAuthenticationData()" formControlName="username" />
+    <small class="invalid-text">
+      <span *ngIf="verifyValidTouched('username')">
+        Usuário deve ser informado
+      </span>
+    </small>
+  </div>
+  <div class="flex flex-column pt-2 opacity-90">
+    <input pInputText id="password" type="password" class="p-inputtext-sm" placeholder="Senha"
+      (change)="getAuthenticationData()" formControlName="password" />
+    <small class="invalid-text">
+      <span *ngIf="verifyValidTouched('password')">
+        Senha deve ser informada
+      </span>
+    </small>
+  </div>
+  <div class="flex flex-column pt-2 opacity-90">
+    <input pInputText id="environment" class="p-inputtext-sm" placeholder="Ambiente"
+      (change)="getAuthenticationData()" formControlName="environment" />
+    <small class="invalid-text">
+      <span *ngIf="verifyValidTouched('environment')">
+        Ambiente deve ser informado
+      </span>
+    </small>
+  </div>
+</form>

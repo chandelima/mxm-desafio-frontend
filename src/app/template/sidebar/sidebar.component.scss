@@ -1,14 +1,18 @@
 nav {
   width: 15rem;
-  padding: 1.5rem;
+  padding: 1.5rem 0;
   display: flex;
   flex-direction: column;
-  background-color: #263238;
+  background-color: var(--color-mxm-blue);
   color: #FFF;
   box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
   position: fixed;
   top: 0;
   bottom: 0;
+}
+
+app-authentication {
+  padding: 0 1.5rem;
 }
 
 #logo-container {
@@ -30,12 +34,21 @@ nav {
   height: 100%;
 
   li {
+    padding: 1rem 1.5rem;
     transition: all 0.3s linear;
-    padding-bottom: 2rem;
+    cursor: pointer;
   }
 }
 
 #footer {
   font-size: 0.8em;
   font-weight: 300;
+  padding: 0 1.5rem;
+}
+
+.active {
+  width: 100%;
+  background-color: rgba(255,255,255, 0.9);
+  color: var(--color-mxm-orange);
+  font-weight: 600;
 }
