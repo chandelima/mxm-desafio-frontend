@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import Axios from  'axios-observable';
 import { EquitySubgroupRequestInterface } from '../interfaces/equity-subgroup-request';
 import { environment } from 'src/environments/environment';
 import { MxmRequestInterface } from 'src/app/shared/interfaces/mxm-payload.interface';
@@ -14,13 +15,23 @@ export class EquitySubgroupService {
 
   readonly notifyier = new BehaviorSubject<boolean>(true);
 
-  private readonly baseUrl = `${environment.apiURL}/api/InterfacedoSubGrupoPatrimonial/ConsultaSubGrupoPatrimonial`;
+  private readonly baseUrl = `/proxy/api/InterfacedoSubGrupoPatrimonial/ConsultaSubGrupoPatrimonial`;
 
   constructor(private readonly http: HttpClient) { }
 
-  get(payload: MxmRequestInterface<EquitySubgroupRequestInterface>) {
-    const requestData = new HttpRequest("GET", this.baseUrl, payload);
+  private readonly headers = new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*');
 
-    return this.http.request(requestData);
+  get(payload: MxmRequestInterface<EquitySubgroupRequestInterface>) {
+    console.log(payload);
+    const requestData = {
+      method: "GET",
+      url: this.baseUrl,
+      body: payload,
+      headers: this.headers,
+    }
+
+    return this.http.request("GET", this.baseUrl, { body: payload});
   }
 }

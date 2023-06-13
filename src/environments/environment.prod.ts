@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: '/proxy'
+  apiURL: 'https://h9146.mxmwebmanager.com.br'
 };

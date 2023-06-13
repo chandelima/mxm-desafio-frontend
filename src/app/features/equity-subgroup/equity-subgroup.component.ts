@@ -44,8 +44,8 @@ export class EquitySubGroupComponent extends EquitySubGroupComponentBase impleme
     const payload: MxmRequestInterface<EquitySubgroupRequestInterface> = {
       AutheticationToken: {
         Username: "INTEGRACAO",
-        Password: "123Mxm123",
-        EnviromentName: "MXMSAU02HOM"
+        Password: "123Mxm123@",
+        EnvironmentName: "MXMSAU02HOM"
       },
       Data: {
         Codigo: "",
