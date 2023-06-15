@@ -4,8 +4,8 @@
 
 
 :root {
-  --color-mxm-blue: #092947;
-  --color-mxm-orange: #fe5536;
+  --mxm-color-primary: #002446;
+  --sidebar-width: 260px;
 }
 
 * {
@@ -38,7 +38,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-mxm-blue);
+  color: var(--mxm-color-primary);
 }
 
 hr {

@@ -1,3 +1,3 @@
 export const environment = {
-  apiURL: '/proxy'
+  apiURL: 'https://mxm-desafio-backend-man4j4fmwa-rj.a.run.app'
 };
