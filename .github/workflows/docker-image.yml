@@ -1,4 +1,4 @@
-name: Deploy Desafio MXM
+name: Deploy Desafio MXM Frontend
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     name: Setup Gcloud Account
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/mxm-desafio:latest
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/mxm-desafio-frontend:latest
 
     steps:
       # Git checkout
