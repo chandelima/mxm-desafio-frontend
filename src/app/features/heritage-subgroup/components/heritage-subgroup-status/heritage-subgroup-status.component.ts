@@ -3,14 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { htmlElementValidatable } from 'src/app/shared/mixims/html-element-validatable.mixim';
 import { subscriptable } from 'src/app/shared/mixims/subscriptable.mixim';
 
-const EquitySubgroupStatusComponentBase = htmlElementValidatable(subscriptable(class {}));
+const HeritageSubgroupStatusComponentBase = htmlElementValidatable(subscriptable(class {}));
 
 @Component({
-  selector: 'app-equity-subgroup-status',
-  templateUrl: './equity-subgroup-status.component.html',
-  styleUrls: ['./equity-subgroup-status.component.scss']
+  selector: 'app-heritage-subgroup-status',
+  templateUrl: './heritage-subgroup-status.component.html',
+  styleUrls: ['./heritage-subgroup-status.component.scss']
 })
-export class EquitySubgroupStatusComponent extends EquitySubgroupStatusComponentBase {
+export class HeritageSubgroupStatusComponent extends HeritageSubgroupStatusComponentBase {
 
   @Input() modalVisible = false;
   @Output() setFormVisible = new EventEmitter<boolean>();

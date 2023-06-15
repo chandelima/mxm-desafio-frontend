@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EquitySubGroupComponent } from './equity-sub-group.component';
+import { EquitySubGroupComponent } from './heritagesub-group.component';
 
 describe('EquitySubGroupComponent', () => {
   let component: EquitySubGroupComponent;

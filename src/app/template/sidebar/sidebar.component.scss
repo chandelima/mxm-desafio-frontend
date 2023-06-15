@@ -1,9 +1,9 @@
 nav {
-  width: 15rem;
+  width: var(--sidebar-width);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  background-color: #263238;
+  background-color: var(--mxm-color-primary);
   color: #FFF;
   box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
   position: fixed;

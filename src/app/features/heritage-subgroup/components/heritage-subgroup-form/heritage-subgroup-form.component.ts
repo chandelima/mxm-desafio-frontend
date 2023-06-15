@@ -1,22 +1,22 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { EquitySubgroupService } from '../../services/equity-subgroup.service';
-import { EquitySubgroupRequest } from '../../interfaces/equity-subgroup-request';
-import { EquitySubgroupResponse } from '../../interfaces/equity-subgroup-response';
+import { HeritageSubgroupService } from '../../services/heritage-subgroup.service';
+import { IHeritageSubgroupRequest } from '../../interfaces/iheritage-subgroup-request';
+import { IHeritageSubgroupResponse } from '../../interfaces/iheritage-subgroup-response';
 import { htmlElementValidatable } from 'src/app/shared/mixims/html-element-validatable.mixim';
 import { subscriptable } from 'src/app/shared/mixims/subscriptable.mixim';
 
-const EquitySubgroupFormComponentBase = htmlElementValidatable(subscriptable(class {}));
+const HeritageSubgroupFormComponentBase = htmlElementValidatable(subscriptable(class {}));
 
 @Component({
-  selector: 'app-equity-subgroup-form',
-  templateUrl: './equity-subgroup-form.component.html',
-  styleUrls: ['./equity-subgroup-form.component.scss']
+  selector: 'app-heritage-subgroup-form',
+  templateUrl: './heritage-subgroup-form.component.html',
+  styleUrls: ['./heritage-subgroup-form.component.scss']
 })
-export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase {
+export class HeritageSubgroupFormComponent extends HeritageSubgroupFormComponentBase {
 
-  @Input() data?: EquitySubgroupResponse;
+  @Input() data?: IHeritageSubgroupResponse;
   @Output() setFormVisible = new EventEmitter<boolean>();
   @Input() formVisible = false;
   form: FormGroup = this.formBuilder.group({
@@ -27,7 +27,7 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: EquitySubgroupService
+    private service: HeritageSubgroupService
   ) { super(); }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -39,7 +39,7 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
     this.cleanSubscriptions();
   }
 
-  setDataToSave(): EquitySubgroupRequest {
+  setDataToSave(): IHeritageSubgroupRequest {
     return {
       Descricao: this.form.get("Descricao")!.value,
       CodigoGrupoPatrimonial: this.form.get("CodigoGrupoPatrimonial")!.value
@@ -56,16 +56,16 @@ export class EquitySubgroupFormComponent extends EquitySubgroupFormComponentBase
     this.form.reset();
   }
 
-  create(data: EquitySubgroupRequest): void {
-    const subscription = this.service.create(data)
-      .subscribe(_ => this.service.notify());
-    this.addSubscription(subscription);
+  create(data: IHeritageSubgroupRequest): void {
+    // const subscription = this.service.create(data)
+    //   .subscribe(_ => this.service.notify());
+    // this.addSubscription(subscription);
   }
 
-  edit(id: string, product: EquitySubgroupRequest): void {
-    const subscription = this.service.update(id, product)
-      .subscribe(_ => this.service.notify());
-    this.addSubscription(subscription);
+  edit(id: string, product: IHeritageSubgroupRequest): void {
+    // const subscription = this.service.update(id, product)
+    //   .subscribe(_ => this.service.notify());
+    // this.addSubscription(subscription);
   }
 
   cancel(): void {

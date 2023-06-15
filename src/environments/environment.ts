@@ -1,3 +1,3 @@
 export const environment = {
-  apiURL: 'http://localhost:3000'
+  apiURL: 'https://mxm-desafio-backend-man4j4fmwa-rj.a.run.app'
 };

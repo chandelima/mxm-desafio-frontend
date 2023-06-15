@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EquitySubGroupComponent } from './equity-subgroup/equity-subgroup.component';
+import { EquitySubGroupComponent } from './heritage-subgroup/heritage-subgroup.component';
 import { FeaturesComponent } from './features.component';
 
 const routes: Routes = [
@@ -9,7 +9,8 @@ const routes: Routes = [
     path: '',
     component: FeaturesComponent,
     children: [
-      { path: '', component: EquitySubGroupComponent }
+      { path: '', redirectTo: 'heritage-subgroup', pathMatch: 'full' },
+      { path: 'heritage-subgroup', component: EquitySubGroupComponent }
     ]
   },
 ];
