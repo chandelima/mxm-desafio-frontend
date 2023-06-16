@@ -9,15 +9,15 @@ import { IMxmBaseRequest } from 'src/app/shared/interfaces/imxm-base-request.int
 import { AuthenticationDataService } from 'src/app/template/sidebar/components/services/authentication-form.service';
 import { MessageService } from 'primeng/api';
 
-const EquitySubGroupComponentBase = subscriptable(class {});
+const HeritageSubgroupComponentBase = subscriptable(class {});
 
 @Component({
   selector: 'app-heritage-subgroup',
   templateUrl: './heritage-subgroup.component.html',
   styleUrls: ['./heritage-subgroup.component.scss'],
 })
-export class EquitySubGroupComponent
-  extends EquitySubGroupComponentBase implements OnInit {
+export class HeritageSubgroupComponent
+  extends HeritageSubgroupComponentBase implements OnInit {
 
   dataList: IHeritageSubgroupResponse[] = [];
 
@@ -51,8 +51,9 @@ export class EquitySubGroupComponent
     if (!authData && emmitToast) {
       this.messageService.add({
         severity: 'error',
-        summary: 'Campos de Autenticação inválidos',
-        detail: 'Verifique os dados de login informados e tente novamente.'
+        summary: 'Dados inválidos',
+        detail: `Informe todos os dados necessários para autenticação na barra
+                 lateral esquerda e tente novamente.`
       })
       return;
     }

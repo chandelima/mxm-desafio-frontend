@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EquitySubGroupComponent } from './heritagesub-group.component';
+import { HeritageSubgroupComponent } from './heritagesub-group.component';
 
-describe('EquitySubGroupComponent', () => {
-  let component: EquitySubGroupComponent;
-  let fixture: ComponentFixture<EquitySubGroupComponent>;
+describe('HeritageSubgroupComponent', () => {
+  let component: HeritageSubgroupComponent;
+  let fixture: ComponentFixture<HeritageSubgroupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EquitySubGroupComponent ]
+      declarations: [ HeritageSubgroupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EquitySubGroupComponent);
+    fixture = TestBed.createComponent(HeritageSubgroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
