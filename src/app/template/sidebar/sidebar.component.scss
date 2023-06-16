@@ -26,7 +26,7 @@ app-authentication-form {
 }
 
 #links {
-  margin-top: 3rem;
+  margin-top: 2rem;
   list-style-type: none;
   font-weight: 400;
   font-size: 1.125rem;
@@ -34,10 +34,14 @@ app-authentication-form {
   height: 100%;
 
   li {
-    transition: all 0.3s linear;
-    margin-bottom: 2rem;
+    transition: all 0.5s linear;
     cursor: pointer;
     padding: 1rem;
+
+    &:hover {
+      background-color: rgba(255,255,255, 0.15);
+      color: #FFF;
+    }
   }
 }
 

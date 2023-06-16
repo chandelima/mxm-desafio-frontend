@@ -30,27 +30,47 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 this.showBackendErrorMessage(msg.Message)
               });
             }
+
+            if (
+              event instanceof HttpResponse &&
+              event.body.Success === true &&
+              event.body.Messages.length
+            ) {
+              event.body.Messages.forEach((msg: IMessageResponse) => {
+                this.showBackendSuccessMessage(msg.Message)
+              });
+            }
             return event;
         }}),
         catchError((error: HttpErrorResponse) => {
-          console.error(error)
+          console.error(error);
+          this.showBackendConnectionErrorMessage();
           return throwError(() => error);
         })
       )
   }
 
-  showBackendErrorMessage(error: string): void {
+  showBackendSuccessMessage(message: string): void {
     this.messageService.add({
-      life: 5000,
+      life: 10000,
+      severity: 'success',
+      summary: "Operação realizada com sucesso",
+      detail: message
+    });
+  }
+
+  showBackendErrorMessage(message: string): void {
+    this.messageService.add({
+      life: 10000,
       severity: 'error',
       summary: "Mensagem retornada pelo servidor",
-      detail: error
+      detail: message
     });
   }
 
   showBackendConnectionErrorMessage(): void {
     this.messageService.add({
-      life: 5000,
+      life: 10000,
       severity: 'error',
       summary: "Erro de conexão com o servidor",
       detail: `Verifique a sua conexão e tente novamente. Caso o problema
