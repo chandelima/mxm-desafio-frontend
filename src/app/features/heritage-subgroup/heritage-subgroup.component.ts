@@ -49,12 +49,7 @@ export class HeritageSubgroupComponent
     const authData = this.authDataService.getAuthData();
 
     if (!authData && emmitToast) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Dados inválidos',
-        detail: `Informe todos os dados necessários para autenticação na barra
-                 lateral esquerda e tente novamente.`
-      })
+      this.messageService.add(invalidAuthDataObjMsg)
       return;
     }
 
@@ -77,3 +72,10 @@ export class HeritageSubgroupComponent
     this.formVisible = state;
   }
 }
+
+const invalidAuthDataObjMsg = {
+  severity: 'error',
+  summary: 'Dados inválidos',
+  detail: `Informe todos os dados necessários para autenticação na barra
+           lateral esquerda e tente novamente.`
+};
