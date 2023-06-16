@@ -6,50 +6,45 @@
       <!-- Codigo Control -->
       <div class="field col-12 md:col-2">
         <label>Código</label>
-        <input type="text" autofocus formControlName="codigo"
-          placeholder="Código" pInputText>
+        <input type="text" autofocus formControlName="codigo" placeholder="Código" pInputText>
       </div>
       <!-- Descrição Control -->
       <div class="field col-12 md:col-6">
         <label>Descrição</label>
-        <input type="text" autofocus formControlName="descricao"
-          placeholder="Descrição" pInputText>
+        <input type="text" autofocus formControlName="descricao" placeholder="Descrição" pInputText>
       </div>
-      <!-- Código Grupo Patrimonial Control -->
-      <div class="field col-12 md:col-3">
+      <!-- Código Grupo Patrimonial + Search Control -->
+      <div class="field col-12 md:col-4">
         <label>Cód. Grupo Patrim.</label>
-        <input type="text" autofocus formControlName="codigoGrupoPatrimonial"
-          placeholder="Cód. Grupo Patrimonial" pInputText>
-      </div>
-      <!-- Pesquisar Control -->
-      <div class="field col-12 md:col-1 text-right">
-        <label style="width: 100%; height: 1em;"></label>
-        <button class="p-button-secondary p-button-outlined"
-          pButton icon="ph ph-magnifying-glass" (click)="get()"
-        ></button>
+        <div class="flex">
+          <input type="text" autofocus formControlName="codigoGrupoPatrimonial" placeholder="Cód. Grupo Patrimonial"
+            pInputText>
+          <button class="p-button-secondary p-button-outlined ml-3 col-1" pButton icon="ph ph-magnifying-glass"
+            (click)="get()"></button>
+        </div>
       </div>
     </form>
     <!-- Table -->
     <p-table [value]="dataList" styleClass="p-datatable-sm mt-3">
       <ng-template pTemplate="header">
-          <tr>
-              <th class="text-center">Código</th>
-              <th>Descrição</th>
-              <th class="text-center">Cód. Grupo Patrimonial</th>
-              <th></th>
-          </tr>
+        <tr>
+          <th style="width:16.66%">Código</th>
+          <th style="width:51%">Descrição</th>
+          <th>Cód. Grupo Patrimonial</th>
+          <th></th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-data>
-          <tr>
-              <td class="text-center">{{ data.Codigo }}</td>
-              <td>{{ data.Descricao }}</td>
-              <td class="text-center">{{ data.CodigoGrupoPatrimonial }}</td>
-              <td style="text-align: right">
-                <i class="ph ph-info cursor-pointer"
-                  title="Consulta status do processamento">
-                </i>
-              </td>
-          </tr>
+        <tr>
+          <td>{{ data.Codigo }}</td>
+          <td>{{ data.Descricao }}</td>
+          <td>{{ data.CodigoGrupoPatrimonial }}</td>
+          <td style="text-align: right">
+            <i class="ph ph-info cursor-pointer" title="Ver detalhes"
+              (click)="setInfoFormData(data)">
+            </i>
+          </td>
+        </tr>
       </ng-template>
       <ng-template pTemplate="footer">
         <tr *ngIf="!dataList?.length">
@@ -57,12 +52,11 @@
             Não há subgrupos a serem exibidos.
           </td>
         </tr>
-    </ng-template>
+      </ng-template>
     </p-table>
   </div>
 </div>
 <!-- Form -->
-<app-heritage-subgroup-form [formVisible]="formVisible"
-(setFormVisible)="setFormVisible($event)">
-</app-heritage-subgroup-form>
-<app-heritage-subgroup-status [modalVisible]="modalStatusVisible"></app-heritage-subgroup-status>
+<app-heritage-subgroup-info [formVisible]="infoFormVisible"
+  (setFormVisible)="setInfoFormVisible($event)" [data]="infoData">
+</app-heritage-subgroup-info>

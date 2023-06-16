@@ -6,6 +6,7 @@
 :root {
   --mxm-color-primary: #002446;
   --sidebar-width: 260px;
+  --color-bg: #ecedef;
 }
 
 * {
@@ -57,7 +58,7 @@ hr {
     background-color: #FFF;
     margin: 1.25rem 0;
     padding: 1rem;
-    box-shadow: 0 .25rem .5rem #ecedef;
+    box-shadow: 0 .25rem .5rem var(--color-bg);
   }
 }
 
