@@ -6,13 +6,15 @@ import { IHeritageSubgroupResponse } from './interfaces/iheritage-subgroup-respo
 import { subscriptable } from 'src/app/shared/mixims/subscriptable.mixim';
 import { IHeritageSubgroupRequest } from './interfaces/iheritage-subgroup-request';
 import { IMxmBaseRequest } from 'src/app/shared/interfaces/imxm-base-request.interface';
+import { AuthenticationDataService } from 'src/app/template/sidebar/components/services/authentication-form.service';
+import { MessageService } from 'primeng/api';
 
 const EquitySubGroupComponentBase = subscriptable(class {});
 
 @Component({
   selector: 'app-heritage-subgroup',
   templateUrl: './heritage-subgroup.component.html',
-  styleUrls: ['./heritage-subgroup.component.scss']
+  styleUrls: ['./heritage-subgroup.component.scss'],
 })
 export class EquitySubGroupComponent
   extends EquitySubGroupComponentBase implements OnInit {
@@ -23,29 +25,40 @@ export class EquitySubGroupComponent
   modalStatusVisible = false;
 
   form: FormGroup = this.formBuilder.group({
-    codigo: null,
-		descricao: null,
-		codigoGrupoPatrimonial: null
+    codigo: "",
+		descricao: "",
+		codigoGrupoPatrimonial: ""
 	});
 
   constructor(
-    private readonly service: HeritageSubgroupService,
-    private readonly formBuilder: FormBuilder
+    private readonly authDataService: AuthenticationDataService,
+    private readonly heritageSubgroupService: HeritageSubgroupService,
+    private readonly formBuilder: FormBuilder,
+    private readonly messageService: MessageService
   ) { super(); }
 
   ngOnInit(): void {
-    const subscription = this.service.notifyier
-      .subscribe(_ => this.get());
-    this.addSubscription(subscription);
+    const heritageListSubscription = this.heritageSubgroupService.notifyier
+      .subscribe(_ => this.get(false));
+    const authDataSubscription = this.authDataService.notifyier
+      .subscribe(_ => this.get(false));
+    this.addSubscriptions([authDataSubscription, heritageListSubscription]);
   }
 
-  get() {
+  get(emmitToast = true) {
+    const authData = this.authDataService.getAuthData();
+
+    if (!authData && emmitToast) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Campos de Autenticação inválidos',
+        detail: 'Verifique os dados de login informados e tente novamente.'
+      })
+      return;
+    }
+
     const request: IMxmBaseRequest<IHeritageSubgroupRequest> = {
-      AutheticationToken: {
-        Username: "",
-        Password: "",
-        EnvironmentName: ""
-      },
+      AutheticationToken: { ...authData! },
       Data: {
         Codigo: this.form.get("codigo")?.value,
         Descricao: this.form.get("descricao")?.value,
@@ -53,15 +66,12 @@ export class EquitySubGroupComponent
       }
     }
 
-    const subscription = this.service.read(request)
-      .subscribe({
-        next: res => {
-          if (!res.Data) return;
+    const subscription = this.heritageSubgroupService.read(request)
+      .subscribe(res => {
+        this.dataList = res.Data
+        console.log("dataList", this.dataList)
+      })
 
-          this.dataList = res.Data.sort(
-            (a, b) => a.Descricao > b.Descricao ? 1 : -1
-          )}
-      });
     this.addSubscription(subscription);
   }
 

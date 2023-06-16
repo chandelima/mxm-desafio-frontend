@@ -23,7 +23,7 @@
       </div>
       <!-- Pesquisar Control -->
       <div class="field col-12 md:col-1">
-        <label style="width: 1.5em; height: 1em;"></label>
+        <label style="width: 100%; height: 1em;"></label>
         <button class="p-button-secondary p-button-outlined"
           pButton icon="ph ph-magnifying-glass" (click)="get()"
         ></button>
@@ -33,8 +33,8 @@
     <p-table [value]="dataList" styleClass="p-datatable-sm mt-3">
       <ng-template pTemplate="header">
           <tr>
-              <th class="text-center" style="min-width: 6rem;">Código</th>
-              <th >Descrição</th>
+              <th class="text-center">Código</th>
+              <th class="text-center">Descrição</th>
               <th class="text-center">Cód. Grupo Patrimonial</th>
               <th></th>
           </tr>
@@ -52,7 +52,7 @@
           </tr>
       </ng-template>
       <ng-template pTemplate="footer">
-        <tr *ngIf="!dataList.length">
+        <tr *ngIf="!dataList?.length">
           <td colspan="4" class="text-center font-normal">
             Não há subgrupos a serem exibidos.
           </td>

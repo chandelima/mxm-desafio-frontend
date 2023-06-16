@@ -1,8 +1,7 @@
+import { IAuthenticationToken } from "./iauthentication-token.interface";
+
+
 export interface IMxmBaseRequest<T> {
-  AutheticationToken: {
-    Username: string;
-    Password: string;
-    EnvironmentName: string;
-  },
+  AutheticationToken: IAuthenticationToken,
   Data: T | {}
 }
