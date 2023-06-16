@@ -21,8 +21,8 @@ export class HeritageSubgroupComponent
 
   dataList: IHeritageSubgroupResponse[] = [];
 
-  formVisible = false;
-  modalStatusVisible = false;
+  infoData?: IHeritageSubgroupResponse;
+  infoFormVisible = false;
 
   form: FormGroup = this.formBuilder.group({
     codigo: "",
@@ -68,8 +68,15 @@ export class HeritageSubgroupComponent
     this.addSubscription(subscription);
   }
 
-  setFormVisible(state: boolean) {
-    this.formVisible = state;
+  setInfoFormData(data: IHeritageSubgroupResponse) {
+    this.infoData = data;
+    this.setInfoFormVisible(true);
+  }
+
+  setInfoFormVisible(state: boolean) {
+    this.infoFormVisible = state;
+
+    if (!state) this.infoData = undefined;
   }
 }
 

@@ -1,0 +1,44 @@
+<p-dialog header="Informações do Subgrupo Patrimonial" [(visible)]="formVisible" [modal]="true" [draggable]="true"
+  [responsive]="true" (onHide)="close()" [style]="{ left: 'calc(var(--sidebar-width) / 2)' }" [focusOnShow]="true">
+  <ng-template pTemplate="body">
+    <div class="grid p-fluid formgrid">
+      <!-- Código Control -->
+      <div class="field col-12 md:col-4">
+        <strong>Código</strong>
+        <p>{{ data?.Codigo }}</p>
+      </div>
+      <!-- Código do Grupo Patrimonial Control -->
+      <div class="field col-12 md:col-8">
+        <strong>Código do Grupo Patrimonial</strong>
+        <p>{{ data?.Descricao }}</p>
+      </div>
+      <!-- Descrição Control -->
+      <div class="field col-12 md:col-12">
+        <strong>Descrição</strong>
+        <p>{{ data?.Descricao }}</p>
+      </div>
+      <!--  -->
+      <!-- CLASSIFICAÇÕES ESPECÍFICAS -->
+    </div>
+    <div *ngIf="data?.ClassificacoesEspecificas!.length > 0">
+      <hr>
+      <h4 class="my-2 text-center">Códigos - Classificações Específicas</h4>
+      <p-table [value]="data?.ClassificacoesEspecificas!" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Classificação Específica</th>
+                <th>Grupo</th>
+                <th>Subgrupo</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-spec>
+            <tr>
+                <td>{{ spec.CodigoClassificacaoEspecifica }}</td>
+                <td>{{ spec.CodigoDoGrupo }}</td>
+                <td>{{ spec.CodigoDoSubGrupo }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </div>
+  </ng-template>
+</p-dialog>
