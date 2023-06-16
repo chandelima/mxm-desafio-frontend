@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
 
 import { TemplateRoutingModule } from './template-routing.module';
 import { TemplateComponent } from './template.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AuthenticationFormComponent } from './sidebar/components/authentication-form/authentication-form.component';
+import { ToastModule } from 'primeng/toast';
 
 
 const commonModules = [
@@ -36,11 +36,11 @@ const primeNgModules = [
   ToastModule
 ];
 
-
 @NgModule({
   declarations: [
     TemplateComponent,
-    SidebarComponent
+    SidebarComponent,
+    AuthenticationFormComponent
   ],
   imports: [
     CommonModule,
@@ -52,10 +52,6 @@ const primeNgModules = [
     TemplateComponent,
     ...commonModules,
     ...primeNgModules
-  ],
-  providers: [
-    ConfirmationService,
-    MessageService
   ]
 })
 export class TemplateModule { }

@@ -3,7 +3,8 @@
     <img id="logo" src="assets/mxm_logo_white.png" alt="">
   </div>
   <ul id="links">
-    <li>Grupo Patrimonial</li>
+    <li routerLinkActive="routerActive" [routerLink]="['/app/heritage-subgroup']">Grupo Patrimonial</li>
     <li>Subgrupo Patrimonial</li>
   </ul>
+  <app-authentication-form></app-authentication-form>
 </nav>

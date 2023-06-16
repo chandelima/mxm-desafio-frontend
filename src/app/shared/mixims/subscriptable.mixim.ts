@@ -4,6 +4,7 @@ import { Constructor } from 'src/app/shared/mixims/constructor.mixim';
 
 export interface Subscriptable {
   addSubscription(subscription: Subscription): void;
+  addSubscriptions(subscriptions: Subscription[]): void;
   cleanSubscriptions(): void;
 }
 
@@ -13,6 +14,10 @@ export function subscriptable<T extends Constructor>(base: T): Constructor<Subsc
 
     addSubscription(subscription: Subscription): void {
       this.subscriptions.push(subscription);
+    }
+
+    addSubscriptions(subscriptions: Subscription[]): void {
+      subscriptions.forEach(s => { this.subscriptions.push(s); });
     }
 
     cleanSubscriptions(): void {

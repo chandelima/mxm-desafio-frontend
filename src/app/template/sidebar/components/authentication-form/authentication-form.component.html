@@ -1,0 +1,38 @@
+<h4>Autenticação</h4>
+<form [formGroup]="form">
+  <div class="grid p-fluid formgrid flex justify-content-between">
+    <!-- Username Control -->
+    <div class="field col-12 md:col-12 mb-1">
+      <small class="invalid-text mb-1">
+        <span *ngIf="verifyValidTouched('username')">
+          Nome de Usuário deve ser preenchido
+        </span>
+      </small>
+      <input type="text" autofocus formControlName="username"
+        placeholder="Nome de Usuário" pInputText required class="p-inputtext-sm"
+        [ngClass]="applyControlInvalid('username')" (change)="setAuthData()">
+    </div>
+    <!-- Password Control -->
+    <div class="field col-12 md:col-12 mb-1">
+      <small class="invalid-text mb-1">
+        <span *ngIf="verifyValidTouched('password')">
+          Senha deve ser informada
+        </span>
+      </small>
+      <input type="password" autofocus formControlName="password" placeholder="Senha"
+        pInputText required class="p-inputtext-sm" (change)="setAuthData()"
+        [ngClass]="applyControlInvalid('password')">
+    </div>
+    <!-- Environment Control -->
+    <div class="field col-12 md:col-12 mb-1">
+      <small class="invalid-text mb-1">
+        <span *ngIf="verifyValidTouched('environment')">
+          Ambiente deve ser informado
+        </span>
+      </small>
+      <input type="text" autofocus formControlName="environment"
+        placeholder="Ambiente" pInputText required class="p-inputtext-sm"
+        [ngClass]="applyControlInvalid('environment')" (change)="setAuthData()">
+    </div>
+  </div>
+</form>
