@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 
 import { TemplateRoutingModule } from './template-routing.module';
 import { TemplateComponent } from './template.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthenticationFormComponent } from './sidebar/components/authentication-form/authentication-form.component';
-import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
+import { ProgressSpinnerInterceptor } from './progress-spinner/interceptors/progress-spinner.interceptor';
 
 
 const commonModules = [
@@ -32,6 +34,7 @@ const primeNgModules = [
   DividerModule,
   InputTextModule,
   MessagesModule,
+  ProgressSpinnerModule,
   TableModule,
   ToastModule
 ];
@@ -40,7 +43,8 @@ const primeNgModules = [
   declarations: [
     TemplateComponent,
     SidebarComponent,
-    AuthenticationFormComponent
+    AuthenticationFormComponent,
+    ProgressSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +56,13 @@ const primeNgModules = [
     TemplateComponent,
     ...commonModules,
     ...primeNgModules
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ProgressSpinnerInterceptor,
+      multi: true
+    },
   ]
 })
 export class TemplateModule { }

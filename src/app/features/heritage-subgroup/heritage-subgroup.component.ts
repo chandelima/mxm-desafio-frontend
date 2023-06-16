@@ -68,10 +68,7 @@ export class HeritageSubgroupComponent
     }
 
     const subscription = this.heritageSubgroupService.read(request)
-      .subscribe(res => {
-        this.dataList = res.Data
-        console.log("dataList", this.dataList)
-      })
+      .subscribe(res => this.dataList = res.Data);
 
     this.addSubscription(subscription);
   }
