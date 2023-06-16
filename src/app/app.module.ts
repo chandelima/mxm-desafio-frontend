@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeaturesModule } from './features/features.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor.ts';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,12 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   bootstrap: [AppComponent],
   providers: [
     ConfirmationService,
-    MessageService
+    MessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    },
   ]
 })
 export class AppModule { }

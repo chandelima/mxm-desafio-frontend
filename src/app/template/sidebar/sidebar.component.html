@@ -3,8 +3,11 @@
     <img id="logo" src="assets/mxm_logo_white.png" alt="">
   </div>
   <ul id="links">
-    <li routerLinkActive="routerActive" [routerLink]="['/app/heritage-subgroup']">Grupo Patrimonial</li>
-    <li>Subgrupo Patrimonial</li>
+    <li *ngFor="let item of sidebarItems" routerLinkActive="routerActive"
+      [routerLink]="[item.route]"
+    >
+      {{item.name}}
+    </li>
   </ul>
   <app-authentication-form></app-authentication-form>
 </nav>
