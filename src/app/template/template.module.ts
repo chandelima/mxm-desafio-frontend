@@ -10,6 +10,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
@@ -36,6 +37,7 @@ const primeNgModules = [
   MessagesModule,
   ProgressSpinnerModule,
   TableModule,
+  TabViewModule,
   ToastModule
 ];
 

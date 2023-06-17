@@ -7,6 +7,7 @@ import { FeaturesComponent } from './features.component';
 import { TemplateModule } from '../template/template.module';
 import { HeritageSubgroupInfoComponent } from './heritage-subgroup/components/heritage-subgroup-info/heritage-subgroup-info.component';
 import { HeritageSubgroupStatusComponent } from './heritage-subgroup/components/heritage-subgroup-status/heritage-subgroup-status.component';
+import { ProcessingStatusComponent } from './processing-status/processing-status.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HeritageSubgroupStatusComponent } from './heritage-subgroup/components/
     HeritageSubgroupComponent,
     FeaturesComponent,
     HeritageSubgroupInfoComponent,
-    HeritageSubgroupStatusComponent
+    HeritageSubgroupStatusComponent,
+    ProcessingStatusComponent
   ],
   imports: [
     CommonModule,

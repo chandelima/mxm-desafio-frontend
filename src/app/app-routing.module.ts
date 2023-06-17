@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { TemplateComponent } from './template/template.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'app', pathMatch: 'full' },
   {
-    path: 'app',
+    path: '',
     component: TemplateComponent,
     children: [
 			{
