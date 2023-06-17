@@ -1,35 +1,16 @@
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
-import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { IMxmBaseResponse } from 'src/app/shared/interfaces/imxm-base-response.interface';
-import { IHeritageSubgroupResponse } from '../interfaces/iheritage-subgroup-response';
-import { IMxmBaseRequest } from 'src/app/shared/interfaces/imxm-base-request.interface';
-import { IHeritageSubgroupRequest } from '../interfaces/iheritage-subgroup-request';
+import { HttpBaseService } from 'src/app/shared/services/http-base-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HeritageSubgroupService {
+export class HeritageSubgroupService extends HttpBaseService {
 
-  readonly notifyier = new BehaviorSubject<boolean>(true);
-
-  private readonly baseUrl = environment.apiURL;
-  private readonly resourcePaths = {
-    read: "api/InterfacedoSubGrupoPatrimonial/ConsultaSubGrupoPatrimonial"
+  protected readonly resourcePaths = {
+    get: "/GET/?resourcePath=api/InterfacedoSubGrupoPatrimonial/ConsultaSubGrupoPatrimonial"
   }
 
-  constructor(
-    private readonly http: HttpClient
-  ) { }
-
-  get(data: IMxmBaseRequest<IHeritageSubgroupRequest>)
-    : Observable<IMxmBaseResponse<IHeritageSubgroupResponse[]>> {
-
-    const url = `${this.baseUrl}/GET/?resourcePath=${this.resourcePaths.read}`;
-
-    return this.http.post<IMxmBaseResponse<IHeritageSubgroupResponse[]>>(
-      url, data);
-  }
+  constructor(protected override readonly injector: Injector)
+  { super(injector) }
 }

@@ -49,10 +49,9 @@ export class HeritageSubgroupComponent
   get(emmitToast = true) {
     const authData = this.authDataService.getAuthData();
 
-    if (!authData && emmitToast) {
-      this.messageService.add(invalidAuthDataObjMsg)
-      return;
-    }
+    if (!authData && emmitToast)
+      this.messageService.add(invalidAuthDataObjMsg);
+    if (!authData) return;
 
     const request: IMxmBaseRequest<IHeritageSubgroupRequest> = {
       AutheticationToken: { ...authData! },
