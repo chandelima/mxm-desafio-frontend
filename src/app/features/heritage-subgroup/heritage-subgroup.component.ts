@@ -8,8 +8,9 @@ import { IHeritageSubgroupRequest } from './interfaces/iheritage-subgroup-reques
 import { IMxmBaseRequest } from 'src/app/shared/interfaces/imxm-base-request.interface';
 import { AuthenticationDataService } from 'src/app/template/sidebar/components/services/authentication-form.service';
 import { MessageService } from 'primeng/api';
+import { invalidAuthDataObjMsg } from 'src/app/shared/helpers';
 
-const HeritageSubgroupComponentBase = subscriptable(class {});
+const Subscriptable = subscriptable(class {});
 
 @Component({
   selector: 'app-heritage-subgroup',
@@ -17,7 +18,7 @@ const HeritageSubgroupComponentBase = subscriptable(class {});
   styleUrls: ['./heritage-subgroup.component.scss'],
 })
 export class HeritageSubgroupComponent
-  extends HeritageSubgroupComponentBase implements OnInit {
+  extends Subscriptable implements OnInit {
 
   dataList: IHeritageSubgroupResponse[] = [];
 
@@ -62,7 +63,7 @@ export class HeritageSubgroupComponent
       }
     }
 
-    const subscription = this.heritageSubgroupService.read(request)
+    const subscription = this.heritageSubgroupService.get(request)
       .subscribe(res => this.dataList = res.Data);
 
     this.addSubscription(subscription);
@@ -79,10 +80,3 @@ export class HeritageSubgroupComponent
     if (!state) this.infoData = undefined;
   }
 }
-
-const invalidAuthDataObjMsg = {
-  severity: 'warn',
-  summary: 'Dados inválidos',
-  detail: `Informe todos os dados necessários para autenticação na barra
-           lateral esquerda e tente novamente.`
-};

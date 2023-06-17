@@ -22,14 +22,14 @@ export class HeritageSubgroupService {
 
   constructor(
     private readonly http: HttpClient
-  ) {}
+  ) { }
 
-    read(data: IMxmBaseRequest<IHeritageSubgroupRequest>)
-      : Observable<IMxmBaseResponse<IHeritageSubgroupResponse[]>> {
+  get(data: IMxmBaseRequest<IHeritageSubgroupRequest>)
+    : Observable<IMxmBaseResponse<IHeritageSubgroupResponse[]>> {
 
-      const url = `${this.baseUrl}/GET/?resourcePath=${this.resourcePaths.read}`;
+    const url = `${this.baseUrl}/GET/?resourcePath=${this.resourcePaths.read}`;
 
-      return this.http.post<IMxmBaseResponse<IHeritageSubgroupResponse[]>>(
-        url, data);
-    }
+    return this.http.post<IMxmBaseResponse<IHeritageSubgroupResponse[]>>(
+      url, data);
+  }
 }

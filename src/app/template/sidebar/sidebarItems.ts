@@ -6,14 +6,14 @@ interface ISidebarItems {
 export const sidebarItems: ISidebarItems[] = [
   {
     name: 'Grupo Patrimonial',
-    route: '/app/heritage-group'
+    route: '/heritage-group'
   },
   {
     name: 'Subgrupo Patrimonial',
-    route: '/app/heritage-subgroup'
+    route: '/heritage-subgroup'
   },
   {
     name: 'Status do Processamento',
-    route: '/app/processing-status'
+    route: '/processing-status'
   },
 ]

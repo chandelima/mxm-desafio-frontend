@@ -1,0 +1,109 @@
+<div id="page">
+  <h2>Consulta Status do Processamento</h2>
+  <div id="page-container">
+    <div>
+      <span class="mr-3">Sequência do Processo:</span>
+      <input type="number" pInputText [(ngModel)]="processSequence" (keyup.enter)="get()" />
+      <button class="p-button-secondary p-button-outlined ml-3" pButton icon="ph ph-magnifying-glass" (click)="get()"
+        [disabled]="!processSequence">
+      </button>
+      <p-divider styleClass="my-3"></p-divider>
+    </div>
+    <div *ngFor="let item of dataList">
+      <p-tabView>
+        <p-tabPanel header="Geral">
+          <div class="grid p-fluid formgrid">
+            <!-- Mensagem -->
+            <div class="field col-12 md:col-4">
+              <strong>Status:</strong>
+              <p>{{ item?.Mensagem }}</p>
+            </div>
+            <!-- Sequência do Processo -->
+            <div class="field col-12 md:col-4">
+              <strong>Sequência do Processo:</strong>
+              <p>{{ item?.SequenciadoProcesso }}</p>
+            </div>
+            <!-- Sequência do Registro -->
+            <div class="field col-12 md:col-4">
+              <strong>Sequência do Registro:</strong>
+              <p>{{ item?.SequenciadoRegistro }}</p>
+            </div>
+            <!-- Status da Operação -->
+            <div class="field col-12 md:col-4">
+              <strong>Status da Operação:</strong>
+              <p>{{ item?.StatusOperacao }}</p>
+            </div>
+            <!-- Código do Responsável -->
+            <div class="field col-12 md:col-4">
+              <strong>Código do Responsável:</strong>
+              <p>{{ item?.CodigoResponsavel }}</p>
+            </div>
+            <!-- Proporcional -->
+            <div class="field col-12 md:col-4">
+              <strong>Proporcional:</strong>
+              <p>{{ item?.Proporcional === "S" ? "Sim" : "Não" }}</p>
+            </div>
+            <!-- Inativo -->
+            <div class="field col-12 md:col-4">
+              <strong>Inativo:</strong>
+              <p>{{ item?.Inativo === "S" ? "Sim" : "Não" }}</p>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Grupo Patrimonial">
+          <div class="grid p-fluid formgrid">
+            <!-- Código -->
+            <div class="field col-12 md:col-2">
+              <strong>Código:</strong>
+              <p>{{ item?.CodigoGrupoPatrimonial }}</p>
+            </div>
+            <!-- Descrição -->
+            <div class="field col-12 md:col-10">
+              <strong>Descrição:</strong>
+              <p>{{ item?.DescricaoGrupoPatrimonial }}</p>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Contábil">
+          <div class="grid p-fluid formgrid">
+            <!-- Contábil -->
+            <div class="field col-12 md:col-3">
+              <strong>Contábil:</strong>
+              <p>{{ item?.Contabil }}</p>
+            </div>
+            <!-- Percentual de Depreciação 01 -->
+            <div class="field col-12 md:col-3">
+              <strong>Percentual de Depreciação 01:</strong>
+              <p>{{ item?.PercentualDepreciacao01 }}</p>
+            </div>
+            <!-- Percentual de Depreciação 02 -->
+            <div class="field col-12 md:col-3">
+              <strong>Percentual de Depreciação 02:</strong>
+              <p>{{ item?.PercentualDepreciacao02 }}</p>
+            </div>
+            <!-- Percentual de Depreciação Fiscal -->
+            <div class="field col-12 md:col-3">
+              <strong>Percentual de Depreciação Fiscal:</strong>
+              <p>{{ item?.PercentualDepreciacaoFiscal }}</p>
+            </div>
+            <!-- Percentual Máximo de Depreciação Residual -->
+            <div class="field col-12 md:col-3">
+              <strong>Percentual Máximo de Depreciação Residual:</strong>
+              <p>{{ item?.PercentualMaximoDepreciacaoResidual }}</p>
+            </div>
+            <!-- Taxa -->
+            <div class="field col-12 md:col-3">
+              <strong>Taxa:</strong>
+              <p>{{ item?.Taxa }}</p>
+            </div>
+            <!-- Taxa de Depreciação Variável -->
+            <div class="field col-12 md:col-3">
+              <strong>Taxa de Depreciação Variável:</strong>
+              <p>{{ item?.TaxaDepreciacaoVariavel }}</p>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>
