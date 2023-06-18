@@ -8,17 +8,18 @@ import { invalidAuthDataObjMsg } from 'src/app/shared/helpers';
 import { HttpBaseService } from '../../services/http-base-service';
 import { subscriptable } from '../../mixims/subscriptable.mixim';
 import { IAuthenticationToken } from '../../interfaces/iauthentication-token.interface';
+import { pageable } from '../../mixims/pageable.mixim';
 
-const Subscriptable = subscriptable(class {});
+const MainBaseComponentBase = subscriptable(pageable(class { }));
 
 @Injectable({
   providedIn: 'root'
 })
 export abstract class MainBaseComponent<TRequest, TResponse>
-  extends Subscriptable implements OnInit {
+  extends MainBaseComponentBase implements OnInit {
 
   data?: TResponse;
-  dataList?: TResponse[];
+  override dataList?: TResponse[];
 
   infoFormVisible = false;
 
@@ -33,13 +34,13 @@ export abstract class MainBaseComponent<TRequest, TResponse>
     protected readonly injector: Injector,
   ) {
     super();
-		if (!injector)
-			throw new Error(`Injector must be injected at child class ${this.constructor.name}`);
+    if (!injector)
+      throw new Error(`Injector must be injected at child class ${this.constructor.name}`);
 
-		this.authDataService = injector.get(AuthenticationDataService);
-		this.messageService = injector.get(MessageService);
-		this.formBuilder = injector.get(FormBuilder);
-	}
+    this.authDataService = injector.get(AuthenticationDataService);
+    this.messageService = injector.get(MessageService);
+    this.formBuilder = injector.get(FormBuilder);
+  }
 
   abstract getRequestData(authData: IAuthenticationToken): IMxmBaseRequest<TRequest>;
 
@@ -60,11 +61,13 @@ export abstract class MainBaseComponent<TRequest, TResponse>
 
     const subscription = this.dataService
       .get(this.getRequestData(authData))
-      .subscribe(res => this.dataList = res.Data);
+      .subscribe(res => {
+        this.dataList = res.Data;
+        this.setPagination();
+      });
 
     this.addSubscription(subscription);
   }
-
 
   setInfoFormData(data: TResponse) {
     this.data = data;

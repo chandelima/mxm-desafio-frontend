@@ -25,7 +25,7 @@
       </div>
     </form>
     <!-- Table -->
-    <p-table [value]="dataList!" styleClass="p-datatable-sm mt-3">
+    <p-table [value]="paginatedList!" styleClass="p-datatable-sm mt-3">
       <ng-template pTemplate="header">
         <tr>
           <th style="width:16.66%">Código</th>
@@ -47,13 +47,18 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="footer">
-        <tr *ngIf="!dataList?.length">
+        <tr *ngIf="!paginatedList?.length">
           <td colspan="4" class="text-center font-normal">
-            Não há subgrupos a serem exibidos.
+            Não há subgrupos patrimoniais a serem exibidos.
           </td>
         </tr>
       </ng-template>
     </p-table>
+    <!-- Paginator -->
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="pagination.first"
+     [rows]="pagination.rows" [totalRecords]="pagination.totalRecords"
+     [rowsPerPageOptions]="pagination.rowsPerPageOptions">
+    </p-paginator>
   </div>
 </div>
 <!-- Form -->

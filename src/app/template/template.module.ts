@@ -11,6 +11,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
@@ -39,6 +40,7 @@ const primeNgModules = [
   InputTextModule,
   MessageModule,
   MessagesModule,
+  PaginatorModule,
   ProgressSpinnerModule,
   TableModule,
   TabViewModule,

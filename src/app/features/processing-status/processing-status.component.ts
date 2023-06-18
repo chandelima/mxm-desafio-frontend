@@ -26,6 +26,7 @@ export class ProcessingStatusComponent extends Subscriptable {
   ) { super(); }
 
   get() {
+    this.dataList = undefined;
     const authData = this.authDataService.getAuthData();
 
     if (!authData) {
