@@ -8,26 +8,18 @@ import { invalidAuthDataObjMsg } from 'src/app/shared/helpers';
 import { HttpBaseService } from '../../services/http-base-service';
 import { subscriptable } from '../../mixims/subscriptable.mixim';
 import { IAuthenticationToken } from '../../interfaces/iauthentication-token.interface';
+import { pageable } from '../../mixims/pageable.mixim';
 
-const Subscriptable = subscriptable(class { });
+const MainBaseComponentBase = subscriptable(pageable(class { }));
 
 @Injectable({
   providedIn: 'root'
 })
 export abstract class MainBaseComponent<TRequest, TResponse>
-  extends Subscriptable implements OnInit {
+  extends MainBaseComponentBase implements OnInit {
 
   data?: TResponse;
-  dataList?: TResponse[];
-  paginatedList?: TResponse[];
-
-  pagination = {
-    actualPage: 0,
-    first: 0,
-    rows: 10,
-    totalRecords: 0,
-    rowsPerPageOptions: [10, 20, 30]
-  };
+  override dataList?: TResponse[];
 
   infoFormVisible = false;
 
@@ -86,24 +78,5 @@ export abstract class MainBaseComponent<TRequest, TResponse>
     this.infoFormVisible = state;
 
     if (!state) this.data = undefined;
-  }
-
-  private setPagination(): void {
-    this.pagination.totalRecords = this.dataList?.length!;
-    this.paginatedList = this.dataList?.slice(
-      this.pagination.first,
-      this.pagination.first + this.pagination.rows
-    );
-  }
-
-  onPageChange(event: any) {
-    this.pagination.actualPage = event.page;
-    this.pagination.first = event.first;
-    this.pagination.rows = event.rows;
-
-    this.paginatedList = this.dataList?.slice(
-      this.pagination.first,
-      this.pagination.first + this.pagination.rows
-    );
   }
 }
