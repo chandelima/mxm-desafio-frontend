@@ -16,7 +16,7 @@ const Subscriptable = subscriptable(class {});
   styleUrls: ['./processing-status.component.scss']
 })
 export class ProcessingStatusComponent extends Subscriptable {
-  processSequence?: number;
+  processSequence?: string;
   dataList?: InterfacedoGrupoPatrimonial[];
 
   constructor(
@@ -35,9 +35,7 @@ export class ProcessingStatusComponent extends Subscriptable {
 
     const request: IMxmBaseRequest<IProcessingStatusRequest> = {
       AutheticationToken: { ...authData! },
-      Data: {
-        SequenciadoProcesso: this.processSequence
-      }
+      Data: { SequenciadoProcesso: this.processSequence! }
     }
 
     const subscription = this.processingStatusService.get(request)

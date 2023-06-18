@@ -1,23 +1,31 @@
 <div id="page">
   <h2>Consulta Status do Processamento</h2>
   <div id="page-container">
-    <div>
-      <span class="mr-3">Sequência do Processo:</span>
-      <input type="number" pInputText [(ngModel)]="processSequence" (keyup.enter)="get()" />
-      <button class="p-button-secondary p-button-outlined ml-3" pButton icon="ph ph-magnifying-glass" (click)="get()"
-        [disabled]="!processSequence">
-      </button>
-      <p-divider styleClass="my-3"></p-divider>
+    <div class="flex">
+      <div>
+        <span class="mr-3">Sequência do Processo:</span>
+        <input type="number" pInputText [(ngModel)]="processSequence" (keyup.enter)="get()" />
+        <button class="p-button-secondary p-button-outlined ml-3" pButton icon="ph ph-magnifying-glass" (click)="get()"
+          [disabled]="!processSequence">
+        </button>
+      </div>
+      <div *ngFor="let item of dataList" class="ml-6">
+        <div *ngIf="item.Mensagem === 'Registro Não Processado'">
+          <p-message severity="warn" text="{{item?.Mensagem}}"
+            class="ml-6">
+          </p-message>
+        </div>
+        <div *ngIf="item.Mensagem !== 'Registro Não Processado'">
+          <p-message severity="info" text="{{item?.Mensagem}}">
+          </p-message>
+        </div>
+      </div>
     </div>
+    <p-divider styleClass="my-3"></p-divider>
     <div *ngFor="let item of dataList">
       <p-tabView>
         <p-tabPanel header="Geral">
           <div class="grid p-fluid formgrid">
-            <!-- Mensagem -->
-            <div class="field col-12 md:col-4">
-              <strong>Status:</strong>
-              <p>{{ item?.Mensagem }}</p>
-            </div>
             <!-- Sequência do Processo -->
             <div class="field col-12 md:col-4">
               <strong>Sequência do Processo:</strong>
