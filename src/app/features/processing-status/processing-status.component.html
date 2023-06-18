@@ -1,7 +1,7 @@
 <div id="page">
   <h2>Consulta Status do Processamento</h2>
   <div id="page-container">
-    <div class="flex">
+    <div class="flex justify-content-between">
       <div>
         <span class="mr-3">Sequência do Processo:</span>
         <input type="number" pInputText [(ngModel)]="processSequence" (keyup.enter)="get()" />
@@ -9,7 +9,8 @@
           [disabled]="!processSequence">
         </button>
       </div>
-      <div *ngFor="let item of dataList" class="ml-6">
+      <div *ngFor="let item of dataList" class="flex align-items-center">
+        <p class="mr-1" class="font-semibold">Status:</p>
         <div *ngIf="item.Mensagem === 'Registro Não Processado'">
           <p-message severity="warn" text="{{item?.Mensagem}}"
             class="ml-6">

@@ -9,7 +9,7 @@ import { HttpBaseService } from '../../services/http-base-service';
 import { subscriptable } from '../../mixims/subscriptable.mixim';
 import { IAuthenticationToken } from '../../interfaces/iauthentication-token.interface';
 
-const Subscriptable = subscriptable(class {});
+const Subscriptable = subscriptable(class { });
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,15 @@ export abstract class MainBaseComponent<TRequest, TResponse>
 
   data?: TResponse;
   dataList?: TResponse[];
+  paginatedList?: TResponse[];
+
+  pagination = {
+    actualPage: 0,
+    first: 0,
+    rows: 10,
+    totalRecords: 0,
+    rowsPerPageOptions: [10, 20, 30]
+  };
 
   infoFormVisible = false;
 
@@ -33,13 +42,13 @@ export abstract class MainBaseComponent<TRequest, TResponse>
     protected readonly injector: Injector,
   ) {
     super();
-		if (!injector)
-			throw new Error(`Injector must be injected at child class ${this.constructor.name}`);
+    if (!injector)
+      throw new Error(`Injector must be injected at child class ${this.constructor.name}`);
 
-		this.authDataService = injector.get(AuthenticationDataService);
-		this.messageService = injector.get(MessageService);
-		this.formBuilder = injector.get(FormBuilder);
-	}
+    this.authDataService = injector.get(AuthenticationDataService);
+    this.messageService = injector.get(MessageService);
+    this.formBuilder = injector.get(FormBuilder);
+  }
 
   abstract getRequestData(authData: IAuthenticationToken): IMxmBaseRequest<TRequest>;
 
@@ -60,11 +69,13 @@ export abstract class MainBaseComponent<TRequest, TResponse>
 
     const subscription = this.dataService
       .get(this.getRequestData(authData))
-      .subscribe(res => this.dataList = res.Data);
+      .subscribe(res => {
+        this.dataList = res.Data;
+        this.setPagination();
+      });
 
     this.addSubscription(subscription);
   }
-
 
   setInfoFormData(data: TResponse) {
     this.data = data;
@@ -75,5 +86,24 @@ export abstract class MainBaseComponent<TRequest, TResponse>
     this.infoFormVisible = state;
 
     if (!state) this.data = undefined;
+  }
+
+  private setPagination(): void {
+    this.pagination.totalRecords = this.dataList?.length!;
+    this.paginatedList = this.dataList?.slice(
+      this.pagination.first,
+      this.pagination.first + this.pagination.rows
+    );
+  }
+
+  onPageChange(event: any) {
+    this.pagination.actualPage = event.page;
+    this.pagination.first = event.first;
+    this.pagination.rows = event.rows;
+
+    this.paginatedList = this.dataList?.slice(
+      this.pagination.first,
+      this.pagination.first + this.pagination.rows
+    );
   }
 }
