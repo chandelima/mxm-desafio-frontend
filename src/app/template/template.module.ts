@@ -7,8 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
@@ -33,7 +35,9 @@ const primeNgModules = [
   CardModule,
   DialogModule,
   DividerModule,
+  DropdownModule,
   InputTextModule,
+  MessageModule,
   MessagesModule,
   ProgressSpinnerModule,
   TableModule,

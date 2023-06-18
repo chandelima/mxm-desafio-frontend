@@ -1,0 +1,171 @@
+<p-dialog header="Informações do Grupo Patrimonial" [(visible)]="formVisible" [modal]="true" [draggable]="true"
+  [responsive]="true" (onHide)="close()" [style]="{ left: 'calc(var(--sidebar-width) / 2)', maxWidth: '600px' }"
+  [focusOnShow]="true">
+  <ng-template pTemplate="body">
+    <div class="grid p-fluid formgrid">
+      <!-- Código Control -->
+      <div class="field col-12 md:col-2">
+        <strong>Código:</strong>
+        <p>{{ data?.Codigo }}</p>
+      </div>
+      <!-- Descrição Control -->
+      <div class="field col-12 md:col-10">
+        <strong>Descrição:</strong>
+        <p>{{ data?.Descricao }}</p>
+      </div>
+      <!-- Inativo Control -->
+      <div class="field col-12 md:col-2">
+        <strong>Inativo:</strong>
+        <p>{{ data?.Inativo === 'S' ? 'Sim' : 'Não' }}</p>
+      </div>
+      <!-- Grupo Contábil Control -->
+      <div class="field col-12 md:col-3">
+        <strong>Grupo Contábil:</strong>
+        <p>{{ data?.GrupoContabil }}</p>
+      </div>
+      <!-- Código do Usuário Responsável pela Inativação Control -->
+      <div class="field col-12 md:col-7">
+        <strong>Código do Usuário Responsável pela Inativação:</strong>
+        <p>{{ data?.CodigoUsuarioResponsavelInativacao }}</p>
+      </div>
+    </div>
+    <!--  -->
+    <p-divider styleClass="m-0 p-0"></p-divider>
+    <h4 class="my-2">Depreciação:</h4>
+    <!-- Percentual Anual - Segunda Moeda Control -->
+    <div class="field grid mb-0">
+      <label class="col-12 md:col-8 md:mb-0 font-semibold">
+        Percentual Anual - Segunda Moeda:
+      </label>
+      <span class="col-12 md:col-4">
+        {{ data?.PercentualDeprciacaoAnualSegundaMoeda }}%
+      </span>
+    </div>
+    <div class="field grid mb-0">
+      <label class="col-12 md:col-8 md:mb-0 font-semibold">
+        Percentual Anual Contábil - Segunda Moeda:
+      </label>
+      <span class="col-12 md:col-4">
+        {{ data?.PercentualDepreciacaoContabilAnualSegundaMoeda }}%
+      </span>
+    </div>
+    <!-- Percentual Anual Fiscal - Segunda Moeda Control -->
+    <div class="field grid mb-0">
+      <label class="col-12 md:col-8 md:mb-0 font-semibold">
+        Percentual Anual Fiscal - Segunda Moeda:
+      </label>
+      <span class="col-12 md:col-4">
+        {{ data?.PercentualDepreciacaoFiscalAnualSegundaMoeda }}%
+      </span>
+    </div>
+    <!--  -->
+    <div *ngIf="data?.ContasContabeisGrupoPatrimonials!.length > 0">
+      <p-divider></p-divider>
+      <h4 class="my-2">Códigos - Conta Contábil:</h4>
+      <div *ngFor="let item of data?.ContasContabeisGrupoPatrimonials!">
+        <p-card [header]="item.Codigo" styleClass="py-0">
+          <!-- Empresa -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Empresa:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoEmpresa }}
+            </span>
+          </div>
+          <!-- Grupo de pagamento -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Grupo de Pagamento:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoGrupoPagamento }}
+            </span>
+          </div>
+          <!-- Conta do Bem -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta do Bem:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaBem }}
+            </span>
+          </div>
+          <!-- Conta - Depreciação -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Depreciação:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaDepreciacao }}
+            </span>
+          </div>
+          <!-- Conta - Despesa Depreciação -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Despesa Depreciação:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaDespesaDepreciacao }}
+            </span>
+          </div>
+          <!-- Conta - Resultado -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Resultado:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaResultado }}
+            </span>
+          </div>
+          <!-- Conta - Prejuízo na Baixa -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Prejuízo na Baixa:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaPrejuizoNaBaixa }}
+            </span>
+          </div>
+          <!-- Conta - Correção do Bem -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Correção do Bem:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaCorrecaoBem }}
+            </span>
+          </div>
+          <!-- Conta - Correção da Depreciação -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Correção da Depreciação:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaCorrecaoDepreciacao }}
+            </span>
+          </div>
+          <!-- Plano de Conta -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Plano de Conta:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoPlanoConta }}
+            </span>
+          </div>
+          <!-- Conta - Contra Partida -->
+          <div class="field grid mb-0">
+            <label class="col-12 md:col-6 md:mb-0 font-semibold">
+              Conta - Contra Partida:
+            </label>
+            <span class="col-12 md:col-4">
+              {{ item.CodigoContaContraPartidaBem }}
+            </span>
+          </div>
+          <!--  -->
+        </p-card>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
