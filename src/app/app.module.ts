@@ -9,7 +9,6 @@ import { FeaturesModule } from './features/features.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor.ts';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TemplateComponent } from './template/template.component';
 
 @NgModule({
   declarations: [

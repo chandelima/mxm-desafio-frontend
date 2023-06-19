@@ -8,9 +8,10 @@
           Nome de Usuário deve ser preenchido
         </span>
       </small>
-      <input type="text" autofocus formControlName="username"
-        placeholder="Nome de Usuário" pInputText required class="p-inputtext-sm"
-        [ngClass]="applyControlInvalid('username')" (change)="setAuthData()">
+      <input type="text" autofocus formControlName="username" required
+        autocomplete="username" placeholder="Nome de Usuário" pInputText
+        class="p-inputtext-sm" [ngClass]="applyControlInvalid('username')"
+        (change)="setAuthData()">
     </div>
     <!-- Password Control -->
     <div class="field col-12 md:col-12 mb-1">
@@ -20,8 +21,9 @@
         </span>
       </small>
       <input type="password" autofocus formControlName="password" required
-        pInputText class="p-inputtext-sm" (change)="setAuthData()"
-        placeholder="Senha" [ngClass]="applyControlInvalid('password')">
+        pInputText class="p-inputtext-sm" autocomplete="current-password"
+        placeholder="Senha" [ngClass]="applyControlInvalid('password')"
+        (change)="setAuthData()">
     </div>
     <!-- Environment Control -->
     <div class="field col-12 md:col-12 mb-1">
