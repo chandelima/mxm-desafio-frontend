@@ -1,7 +1,6 @@
 <p-dialog header="Informações do Grupo Patrimonial" [(visible)]="formVisible"
-  [modal]="true" [draggable]="true" [responsive]="true" (onHide)="close()"
+  [modal]="true" [draggable]="true" (onHide)="close()" [focusOnShow]="true"
   [style]="{ left: 'calc(var(--sidebar-width) / 2)', maxWidth: '600px' }"
-  [focusOnShow]="true"
 >
   <ng-template pTemplate="body">
     <div class="grid p-fluid formgrid">
