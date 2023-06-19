@@ -24,9 +24,9 @@ export class HeritageGroupComponent
 
   override filterForm: FormGroup = this.formBuilder.group({
     codigo: "",
-		descricao: "",
-		inativo: ""
-	});
+    descricao: "",
+    inativo: ""
+  });
 
   statusOptions: Status[] = [
     { name: 'Inativo', value: 'S' },
@@ -41,7 +41,10 @@ export class HeritageGroupComponent
   }
 
   override getRequestData(authData: IAuthenticationToken): IMxmBaseRequest<IHeritageGroupGetRequest> {
-      return {
+    if (!this.filterForm.get("inativo")!.value)
+      this.filterForm.patchValue({ ["inativo"]: { name: '', value: '' } });
+
+    return {
       AutheticationToken: { ...authData! },
       Data: {
         Codigo: this.filterForm.get("codigo")?.value,
