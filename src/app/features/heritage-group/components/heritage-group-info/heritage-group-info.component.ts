@@ -9,10 +9,10 @@ import { IHeritageGroupGetResponse } from '../../interfaces/iheritage-group-get-
 export class HeritageGroupInfoComponent {
 
   @Input() data?: IHeritageGroupGetResponse;
-  @Output() setFormVisible = new EventEmitter<boolean>();
+  @Output() setModalVisible = new EventEmitter<boolean>();
   @Input() formVisible = false;
 
   close() {
-    this.setFormVisible.emit(false)
+    this.setModalVisible.emit(false);
   }
 }

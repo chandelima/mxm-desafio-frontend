@@ -52,7 +52,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   showBackendSuccessMessage(message: string): void {
     this.messageService.add({
-      life: 10000,
+      life: 5000,
+      closable: true,
       severity: 'success',
       summary: "Operação realizada com sucesso",
       detail: message
@@ -61,7 +62,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   showBackendErrorMessage(message: string): void {
     this.messageService.add({
-      life: 10000,
+      life: 5000,
+      closable: true,
       severity: 'error',
       summary: "Mensagem retornada pelo servidor",
       detail: message
@@ -70,7 +72,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   showBackendConnectionErrorMessage(): void {
     this.messageService.add({
-      life: 10000,
+      life: 5000,
+      closable: true,
       severity: 'error',
       summary: "Erro de conexão com o servidor",
       detail: `Verifique a sua conexão e tente novamente. Caso o problema

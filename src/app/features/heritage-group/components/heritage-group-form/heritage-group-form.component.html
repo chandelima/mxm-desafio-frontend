@@ -1,0 +1,94 @@
+<p-dialog [header]="getViewTitle()" [(visible)]="showForm" [modal]="true"
+  [style]="{ left: 'calc(var(--sidebar-width) / 2)', maxWidth: '600px' }" (onHide)="closeModal()">
+  <ng-template pTemplate="body">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="grid p-fluid formgrid">
+        <!-- Código Control -->
+        <div class="field col-12 md:col-4">
+          <label>Código *</label>
+          <input type="text" autofocus formControlName="codigoGrupoPatrimonial" pInputText required
+            [ngClass]="applyControlInvalid('codigoGrupoPatrimonial')"><small class="invalid-text">
+            <span *ngIf="verifyValidTouched('codigoGrupoPatrimonial')">
+              Código deve ser informado
+            </span>
+          </small>
+        </div>
+        <!-- Descrição Control -->
+        <div class="field col-12 md:col-8">
+          <label>Descrição *</label>
+          <input type="text" formControlName="descricaoGrupoPatrimonial" pInputText required
+            [ngClass]="applyControlInvalid('descricaoGrupoPatrimonial')">
+          <small class="invalid-text">
+            <span *ngIf="verifyValidTouched('descricaoGrupoPatrimonial')">
+              Descrição deve ser informada
+            </span>
+          </small>
+        </div>
+        <!-- Taxa Control -->
+        <div class="field col-12 md:col-4">
+          <label>Taxa *</label>
+          <p-dropdown [options]="taxOptions" formControlName="taxa" optionLabel="name"
+            placeholder="Selecione..." [required]="true"
+            [showClear]="true"></p-dropdown>
+          <small class="invalid-text">
+            <span *ngIf="verifyValidTouched('taxa')">
+              Taxa deve ser informada
+            </span>
+          </small>
+        </div>
+        <!-- Percentual Depreciação 01 Control -->
+        <div class="field col-12 md:col-4">
+          <label>Depreciação 01 (%)</label>
+          <input type="number" formControlName="percentualDepreciacao01" pInputText>
+        </div>
+        <!-- Percentual Depreciação 02 Control -->
+        <div class="field col-12 md:col-4">
+          <label>Depreciação 02 (%)</label>
+          <input type="number" formControlName="percentualDepreciacao02" pInputText>
+        </div>
+        <!-- Percentual Depreciação Fiscal -->
+        <div class="field col-12 md:col-6">
+          <label>Depreciação Fiscal (%)</label>
+          <input type="number" formControlName="pPercentualDepreciacaoFiscal" pInputText>
+        </div>
+        <!-- Percentual Maximo Depreciação Residual -->
+        <div class="field col-12 md:col-6">
+          <label>Depreciação Residual Máxima (%)</label>
+          <input type="number" formControlName="percentualMaximoDepreciacaoResidual" pInputText>
+        </div>
+        <!-- Proporcional -->
+        <div class="field col-12 md:col-5">
+          <label>Depreciação Proporcional</label>
+          <p-dropdown [options]="yesNoOptions" formControlName="proporcional" optionLabel="name"
+            placeholder="Selecione..."
+            [showClear]="true"></p-dropdown>
+        </div>
+        <!-- Taxa de Depreciação Variável -->
+        <div class="field col-12 md:col-7">
+          <label>Taxa de Depreciação Variável</label>
+          <input type="number" formControlName="taxaDepreciacaoVariavel"
+            pInputText>
+        </div>
+        <!-- Status Control -->
+        <div class="field col-12 md:col-5">
+          <label>Status</label>
+          <p-dropdown [options]="statusOptions" formControlName="inativo" optionLabel="name"
+            placeholder="Selecione..." [virtualScroll]="true"
+            [showClear]="true"></p-dropdown>
+        </div>
+        <!-- Código do Responsável -->
+        <div class="field col-12 md:col-7">
+          <label>Código do Responsável (%)</label>
+          <input type="number" formControlName="codigoResponsavel" pInputText>
+        </div>
+        <!--  -->
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton (click)="closeModal()" label="Cancelar" icon="pi pi-times" class="p-button-text" tabindex="-1">
+    </button>
+    <button pButton (click)="save()" [disabled]="form.invalid" label="Salvar" icon="pi pi-check" class="p-button-text">
+    </button>
+  </ng-template>
+</p-dialog>

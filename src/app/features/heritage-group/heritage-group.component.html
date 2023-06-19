@@ -1,5 +1,9 @@
 <div id="page">
-  <h2>Grupo Patrimonial</h2>
+  <div class="flex justify-content-between align-items-center">
+    <h2>Grupo Patrimonial</h2>
+    <button class="p-button-secondary" pButton icon="ph-bold ph-plus"
+      (click)="setFormVisible(true)"></button>
+  </div>
   <div id="page-container">
     <!-- List page filter -->
     <form class="grid p-fluid formgrid" [formGroup]="filterForm">
@@ -42,8 +46,8 @@
           <td>{{ data.Descricao }}</td>
           <td>{{ data.Inativo == 'S' ? "Inativo" : "Ativo" }}</td>
           <td style="text-align: right">
-            <i class="ph ph-info cursor-pointer" title="Ver detalhes" (click)="setInfoFormData(data)">
-            </i>
+            <i class="ph-bold ph-info cursor-pointer mr-2" title="Ver detalhes" (click)="setInfoModalData(data)"></i>
+            <i class="ph-bold ph-pencil-simple cursor-pointer" title="Ver detalhes" (click)="setFormVisible(true, data)"></i>
           </td>
         </tr>
       </ng-template>
@@ -58,11 +62,15 @@
     <!-- Paginator -->
     <p-paginator (onPageChange)="onPageChange($event)" [first]="pagination.first"
      [rows]="pagination.rows" [totalRecords]="pagination.totalRecords"
-     [rowsPerPageOptions]="pagination.rowsPerPageOptions">
+     [rowsPerPageOptions]="pagination.rowsPerPageOptions" *ngIf="paginatedList.length">
     </p-paginator>
   </div>
 </div>
-<!-- Form -->
-<app-heritage-group-info [formVisible]="infoFormVisible"
-  (setFormVisible)="setInfoFormVisible($event)" [data]="data">
+<!-- Info Modal -->
+<app-heritage-group-info [formVisible]="infoModalVisible"
+  (setModalVisible)="setInfoModalVisible(false)" [data]="data">
 </app-heritage-group-info>
+<!-- Form -->
+<app-heritage-group-form [data]="data" [showForm]="formVisible"
+  (closeForm)="setFormVisible(false)">
+</app-heritage-group-form>

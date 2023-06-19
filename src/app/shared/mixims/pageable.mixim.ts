@@ -30,8 +30,11 @@ export function pageable<T extends Constructor>(base: T)
     };
 
     protected setPagination(): void {
+      this.pagination.actualPage = 0;
+      this.pagination.first = 0;
       this.pagination.totalRecords = this.dataList?.length!;
-      this.paginatedList = this.dataList!.slice(
+      const data = this.dataList ?? [];
+      this.paginatedList = data.slice(
         this.pagination.first,
         this.pagination.first + this.pagination.rows
       );

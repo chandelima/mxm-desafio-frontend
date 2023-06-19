@@ -41,7 +41,7 @@
           <td>{{ data.CodigoGrupoPatrimonial }}</td>
           <td style="text-align: right">
             <i class="ph ph-info cursor-pointer" title="Ver detalhes"
-              (click)="setInfoFormData(data)">
+              (click)="setInfoModalData(data)">
             </i>
           </td>
         </tr>
@@ -57,11 +57,11 @@
     <!-- Paginator -->
     <p-paginator (onPageChange)="onPageChange($event)" [first]="pagination.first"
      [rows]="pagination.rows" [totalRecords]="pagination.totalRecords"
-     [rowsPerPageOptions]="pagination.rowsPerPageOptions">
+     [rowsPerPageOptions]="pagination.rowsPerPageOptions" *ngIf="paginatedList.length">
     </p-paginator>
   </div>
 </div>
 <!-- Form -->
-<app-heritage-subgroup-info [formVisible]="infoFormVisible"
-  (setFormVisible)="setInfoFormVisible($event)" [data]="data">
+<app-heritage-subgroup-info [formVisible]="infoModalVisible"
+  (setFormVisible)="setInfoModalVisible($event)" [data]="data">
 </app-heritage-subgroup-info>
