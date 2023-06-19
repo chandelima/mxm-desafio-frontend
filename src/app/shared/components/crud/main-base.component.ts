@@ -21,7 +21,7 @@ export abstract class MainBaseComponent<TRequest, TResponse>
   data?: TResponse;
   override dataList?: TResponse[];
 
-  infoFormVisible = false;
+  infoModalVisible = false;
 
   abstract filterForm: FormGroup;
   protected abstract dataService: HttpBaseService;
@@ -46,9 +46,9 @@ export abstract class MainBaseComponent<TRequest, TResponse>
 
   ngOnInit(): void {
     const heritageListSubscription = this.dataService.notifyier
-      .subscribe(_ => this.get(false));
+      .subscribe(() => this.get(false));
     const authDataSubscription = this.authDataService.notifyier
-      .subscribe(_ => this.get(false));
+      .subscribe(() => this.get(false));
     this.addSubscriptions([authDataSubscription, heritageListSubscription]);
   }
 
@@ -69,14 +69,13 @@ export abstract class MainBaseComponent<TRequest, TResponse>
     this.addSubscription(subscription);
   }
 
-  setInfoFormData(data: TResponse) {
+  setInfoModalData(data: TResponse) {
     this.data = data;
-    this.setInfoFormVisible(true);
+    this.setInfoModalVisible(true);
   }
 
-  setInfoFormVisible(state: boolean) {
-    this.infoFormVisible = state;
-
+  setInfoModalVisible(state: boolean) {
+    this.infoModalVisible = state;
     if (!state) this.data = undefined;
   }
 }

@@ -47,4 +47,8 @@ export abstract class HttpBaseService {
 
     return this.http.post<IMxmBaseResponse<any>>(url, data);
    }
+
+   notify(): void {
+    this.notifyier.next(true);
+  }
 }
