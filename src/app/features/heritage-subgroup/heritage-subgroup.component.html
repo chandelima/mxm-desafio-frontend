@@ -6,20 +6,24 @@
       <!-- Codigo Control -->
       <div class="field col-12 md:col-2">
         <label>Código</label>
-        <input type="text" autofocus formControlName="codigo" placeholder="Código" pInputText>
+        <input type="text" autofocus formControlName="codigo"
+          placeholder="Código" pInputText>
       </div>
       <!-- Descrição Control -->
       <div class="field col-12 md:col-6">
         <label>Descrição</label>
-        <input type="text" autofocus formControlName="descricao" placeholder="Descrição" pInputText>
+        <input type="text" autofocus formControlName="descricao"
+          placeholder="Descrição" pInputText>
       </div>
       <!-- Código Grupo Patrimonial + Search Control -->
       <div class="field col-12 md:col-4">
         <label>Cód. Grupo Patrim.</label>
         <div class="flex">
-          <input type="text" autofocus formControlName="codigoGrupoPatrimonial" placeholder="Cód. Grupo Patrimonial"
+          <input type="text" autofocus formControlName="codigoGrupoPatrimonial"
+            placeholder="Cód. Grupo Patrimonial"
             pInputText>
-          <button class="p-button-secondary p-button-outlined ml-3 col-1" pButton icon="ph ph-magnifying-glass"
+          <button class="p-button-secondary p-button-outlined ml-3 col-1"
+            pButton icon="ph ph-magnifying-glass"
             (click)="get()"></button>
         </div>
       </div>
@@ -40,7 +44,7 @@
           <td>{{ data.Descricao }}</td>
           <td>{{ data.CodigoGrupoPatrimonial }}</td>
           <td style="text-align: right">
-            <i class="ph ph-info cursor-pointer" title="Ver detalhes"
+            <i class="ph-bold ph-info cursor-pointer" title="Ver detalhes"
               (click)="setInfoModalData(data)">
             </i>
           </td>

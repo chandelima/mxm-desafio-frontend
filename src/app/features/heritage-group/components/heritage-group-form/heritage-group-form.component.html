@@ -1,5 +1,6 @@
 <p-dialog [header]="getViewTitle()" [(visible)]="showForm" [modal]="true"
-  [style]="{ left: 'calc(var(--sidebar-width) / 2)', maxWidth: '600px' }" (onHide)="closeModal()">
+  [style]="{ left: 'calc(var(--sidebar-width) / 2)', maxWidth: '600px' }"
+  (onHide)="closeModal()">
   <ng-template pTemplate="body">
     <form [formGroup]="form" (ngSubmit)="save()">
       <div class="grid p-fluid formgrid">
