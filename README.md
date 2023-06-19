@@ -1,27 +1,50 @@
-# MxmFrontend
+<h1 align="center">Desafio MXM - Frontend</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.8.
+# Sumário
 
-## Development server
+- [Descrição](#Descrição)
+- [Desafios](#Desafios)
+- [Features](#Features)
+- [Tecnologias Utilizadas](#Tecnologias-Utilizadas)
+- [Autor](#Autor)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Descrição
 
-## Code scaffolding
+Aplicação frontend desenvolvida para o Desafio MXM, com a finalidade de consumo das funcionalidades de Grupo Patrimonial, Subgrupo Patrimonial e Status do Processamento, a partir da API da MXM.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Features
 
-## Build
+- [x] Grupo Patrimonial (Listagem, informações, Criação e Edição)
+- [x] Subgrupo Patrimonial (Listagem e informações)
+- [x] Status do Processamento (Consulta)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Desafios
 
-## Running unit tests
+Durante o desenvolviemento deste projeto, os maior desafio consistiram em conseguir encontrar uma maneira de consumir os endpoints do tipo GET com body a partir do frontend Client Side Rendered. Isso porque o objeto da API dos browsers modernos (XmlHttpRequest) responsável por fazer as requisições, ignora automaticamente o corpo das mesmas.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Além disso, foi preciso resolver a problemática dos dados sensíveis da autenticação que são repassados a cada nova requisição. Pois os mesmos não poderiam ser persistidos, como geralmente faz-se com os tokens JWT temporários por exemplo. 
 
-## Running end-to-end tests
+# Tecnologias Utilizadas
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- TypeScript
+- Angular
 
-## Further help
+# Uso
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+O consumo pode ser feito diretamente pelo cliente de escolha do usuário ao serviço hospedado, com documentação disponível a partir do endereço abaixo:
+
+```
+https://mxm-desafio-frontend-man4j4fmwa-rj.a.run.app/
+```
+
+Para uso local, o usuário deve fazer a clonagem do repositório, garantir que o NodeJS está instalado na máquina, e executar os seguintes comandos:
+```
+npm install
+npm start
+```
+
+# Autor
+
+<img src="https://avatars.githubusercontent.com/u/49618629?v=4" alt="ProfilePicture" title="ProfilePicture" width="200px" height="200px" />
+
+[Alexandre Lima](https://github.com/chandelima) &#128640;
