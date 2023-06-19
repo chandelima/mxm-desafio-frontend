@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', redirectTo: 'heritage-subgroup', pathMatch: 'full' },
+      { path: '', redirectTo: 'heritage-group', pathMatch: 'full' },
       { path: 'heritage-group', component: HeritageGroupComponent },
       { path: 'heritage-subgroup', component: HeritageSubgroupComponent },
       { path: 'processing-status', component: ProcessingStatusComponent }

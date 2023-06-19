@@ -1,5 +1,5 @@
 # FROM node:18.13 as build
-FROM node:18.13-slim as build
+FROM node:18.13-slim AS build
 
 WORKDIR /app
 

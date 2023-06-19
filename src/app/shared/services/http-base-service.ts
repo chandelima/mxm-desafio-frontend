@@ -21,7 +21,8 @@ export abstract class HttpBaseService {
 
   constructor(protected readonly injector: Injector) {
 		if (!injector)
-			throw new Error(`Injector must be injected at child class ${this.constructor.name}`);
+			throw new Error(
+        `Injector must be injected at child class ${this.constructor.name}`);
 
 		this.http = injector.get(HttpClient);
 	}
@@ -30,7 +31,8 @@ export abstract class HttpBaseService {
     : Observable<IMxmBaseResponse<any>> {
 
     if (!this.resourcePaths!.get)
-      throw new Error(`Get resource path not implementend for ${this.constructor.name}`);
+      throw new Error(
+        `Get resource path not implementend for ${this.constructor.name}`);
 
     const url = `${this.baseUrl}${this.resourcePaths!.get}`;
 
@@ -41,7 +43,8 @@ export abstract class HttpBaseService {
    : Observable<IMxmBaseResponse<any>> {
 
     if (!this.resourcePaths!.save)
-      throw new Error(`Save resource path not implementend for ${this.constructor.name}`);
+      throw new Error(`
+        Save resource path not implementend for ${this.constructor.name}`);
 
     const url = `${this.baseUrl}${this.resourcePaths!.save}`;
 

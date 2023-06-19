@@ -30,7 +30,9 @@ export class HeritageSubgroupComponent
     super(injector);
   }
 
-  override getRequestData(authData: IAuthenticationToken): IMxmBaseRequest<IHeritageSubgroupRequest> {
+  override getRequestData(authData: IAuthenticationToken)
+  : IMxmBaseRequest<IHeritageSubgroupRequest> {
+
     return {
       AutheticationToken: { ...authData! },
       Data: {

@@ -1,5 +1,7 @@
-<p-dialog header="Informações do Subgrupo Patrimonial" [(visible)]="formVisible" [modal]="true" [draggable]="true"
-  [responsive]="true" (onHide)="close()" [style]="{ left: 'calc(var(--sidebar-width) / 2)' }" [focusOnShow]="true">
+<p-dialog header="Informações do Subgrupo Patrimonial" [(visible)]="formVisible"
+  [modal]="true" [draggable]="true" [responsive]="true" (onHide)="close()"
+  [style]="{ left: 'calc(var(--sidebar-width) / 2)' }" [focusOnShow]="true"
+>
   <ng-template pTemplate="body">
     <div class="grid p-fluid formgrid">
       <!-- Código Control -->
@@ -23,7 +25,9 @@
     <div *ngIf="data?.ClassificacoesEspecificas!.length > 0">
       <hr>
       <h4 class="my-2 text-center">Códigos - Classificações Específicas</h4>
-      <p-table [value]="data?.ClassificacoesEspecificas!" styleClass="p-datatable-sm">
+      <p-table [value]="data?.ClassificacoesEspecificas!"
+        styleClass="p-datatable-sm"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>Classificação Específica</th>

@@ -19,9 +19,9 @@
           Senha deve ser informada
         </span>
       </small>
-      <input type="password" autofocus formControlName="password" placeholder="Senha"
-        pInputText required class="p-inputtext-sm" (change)="setAuthData()"
-        [ngClass]="applyControlInvalid('password')">
+      <input type="password" autofocus formControlName="password" required
+        pInputText class="p-inputtext-sm" (change)="setAuthData()"
+        placeholder="Senha" [ngClass]="applyControlInvalid('password')">
     </div>
     <!-- Environment Control -->
     <div class="field col-12 md:col-12 mb-1">

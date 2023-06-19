@@ -59,9 +59,10 @@
       </ng-template>
     </p-table>
     <!-- Paginator -->
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="pagination.first"
-     [rows]="pagination.rows" [totalRecords]="pagination.totalRecords"
-     [rowsPerPageOptions]="pagination.rowsPerPageOptions" *ngIf="paginatedList.length">
+    <p-paginator [first]="pagination.first" *ngIf="paginatedList.length"
+      [rows]="pagination.rows" [totalRecords]="pagination.totalRecords"
+      [rowsPerPageOptions]="pagination.rowsPerPageOptions"
+      (onPageChange)="onPageChange($event)">
     </p-paginator>
   </div>
 </div>

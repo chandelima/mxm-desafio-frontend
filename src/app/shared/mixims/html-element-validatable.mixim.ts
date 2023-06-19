@@ -7,7 +7,8 @@ export interface HtmlElementValidatable {
   applyControlInvalid(control: string): object
 }
 
-export function htmlElementValidatable<T extends Constructor>(base: T): Constructor<HtmlElementValidatable> & T {
+export function htmlElementValidatable<T extends Constructor>(base: T)
+  : Constructor<HtmlElementValidatable> & T {
   return class extends base {
     form?: FormGroup;
 
