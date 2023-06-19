@@ -8,7 +8,8 @@ export interface Subscriptable {
   cleanSubscriptions(): void;
 }
 
-export function subscriptable<T extends Constructor>(base: T): Constructor<Subscriptable> & T {
+export function subscriptable<T extends Constructor>(base: T)
+  : Constructor<Subscriptable> & T {
   return class extends base implements OnDestroy {
     private subscriptions: Subscription[] = [];
 

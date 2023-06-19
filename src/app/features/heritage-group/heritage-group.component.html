@@ -10,24 +10,29 @@
       <!-- Codigo Control -->
       <div class="field col-12 md:col-2">
         <label>Código</label>
-        <input type="text" autofocus formControlName="codigo" placeholder="Código" pInputText>
+        <input type="text" autofocus formControlName="codigo" pInputText
+          placeholder="Código">
       </div>
       <!-- Descrição Control -->
       <div class="field col-12 md:col-6">
         <label>Descrição</label>
-        <input type="text" autofocus formControlName="descricao" placeholder="Descrição" pInputText>
+        <input type="text" autofocus formControlName="descricao" pInputText
+          placeholder="Descrição">
       </div>
       <!-- Status Control -->
       <div class="field col-12 md:col-3">
         <label>Status</label>
-        <p-dropdown [options]="statusOptions" formControlName="inativo" optionLabel="name"
-          placeholder="Selecione..." (onBlur)="setEmptyStatusValue()" [showClear]="true"></p-dropdown>
+        <p-dropdown [options]="statusOptions" formControlName="inativo"
+          optionLabel="name" placeholder="Selecione..." [showClear]="true"
+          (onBlur)="setEmptyStatusValue()">
+        </p-dropdown>
       </div>
       <!-- Search Button -->
       <div class="field col-12 md:col-1">
         <label style="height: 1em; width: 100%;"></label>
-        <button class="p-button-secondary p-button-outlined" pButton icon="ph ph-magnifying-glass"
-          (click)="get()"></button>
+        <button class="p-button-secondary p-button-outlined" pButton
+          icon="ph ph-magnifying-glass" (click)="get()">
+        </button>
       </div>
     </form>
     <!-- Table -->
@@ -46,8 +51,12 @@
           <td>{{ data.Descricao }}</td>
           <td>{{ data.Inativo == 'S' ? "Inativo" : "Ativo" }}</td>
           <td style="text-align: right">
-            <i class="ph-bold ph-info cursor-pointer mr-2" title="Ver detalhes" (click)="setInfoModalData(data)"></i>
-            <i class="ph-bold ph-pencil-simple cursor-pointer" title="Ver detalhes" (click)="setFormVisible(true, data)"></i>
+            <i class="ph-bold ph-info cursor-pointer mr-2" title="Ver detalhes"
+              (click)="setInfoModalData(data)">
+            </i>
+            <i class="ph-bold ph-pencil-simple cursor-pointer"
+              title="Ver detalhes" (click)="setFormVisible(true, data)">
+            </i>
           </td>
         </tr>
       </ng-template>
@@ -60,9 +69,10 @@
       </ng-template>
     </p-table>
     <!-- Paginator -->
-    <p-paginator (onPageChange)="onPageChange($event)" [first]="pagination.first"
-     [rows]="pagination.rows" [totalRecords]="pagination.totalRecords"
-     [rowsPerPageOptions]="pagination.rowsPerPageOptions" *ngIf="paginatedList.length">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="pagination.rows"
+      [first]="pagination.first" [totalRecords]="pagination.totalRecords"
+      [rowsPerPageOptions]="pagination.rowsPerPageOptions"
+      *ngIf="paginatedList.length">
     </p-paginator>
   </div>
 </div>

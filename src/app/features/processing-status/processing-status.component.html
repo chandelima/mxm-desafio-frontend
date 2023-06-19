@@ -6,7 +6,8 @@
         <span class="mr-3">Sequência do Processo:</span>
         <input type="number" [style]="{ width: '8rem' }" pInputText autofocus
          [(ngModel)]="processSequence" (keyup.enter)="get()" />
-        <button class="p-button-secondary p-button-outlined ml-3" pButton icon="ph ph-magnifying-glass" (click)="get()"
+        <button class="p-button-secondary p-button-outlined ml-3" pButton
+          icon="ph ph-magnifying-glass" (click)="get()"
           [disabled]="!processSequence">
         </button>
       </div>
@@ -104,7 +105,7 @@
             <!-- Taxa -->
             <div class="field col-12 md:col-3">
               <strong>Taxa:</strong>
-              <p>{{ item?.Taxa }}</p>
+              <p>{{ item?.Taxa === "F" ? "Fixa" : "Variável" }}</p>
             </div>
             <!-- Taxa de Depreciação Variável -->
             <div class="field col-12 md:col-3">

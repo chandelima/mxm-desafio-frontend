@@ -1,16 +1,13 @@
 import { Component, Injector } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
 import { MainBaseComponent } from 'src/app/shared/components/crud/main-base.component';
 import { IHeritageGroupGetRequest } from './interfaces/iheritage-group-get-request';
 import { IHeritageGroupGetResponse } from './interfaces/iheritage-group-get-response';
-import { FormGroup } from '@angular/forms';
 import { HeritageGroupService } from './services/heritage-group.service';
 import { IMxmBaseRequest } from 'src/app/shared/interfaces/imxm-base-request.interface';
 import { IAuthenticationToken } from 'src/app/shared/interfaces/iauthentication-token.interface';
-
-interface Status {
-  name: string;
-  value: string;
-}
+import { ISelectOptions } from 'src/app/shared/interfaces/iselect-option.interface';
 
 @Component({
   selector: 'app-heritage-group',
@@ -28,7 +25,7 @@ export class HeritageGroupComponent
     inativo: ""
   });
 
-  statusOptions: Status[] = [
+  statusOptions: ISelectOptions[] = [
     { name: 'Inativo', value: 'S' },
     { name: 'Ativo', value: 'N' },
   ]
@@ -40,8 +37,10 @@ export class HeritageGroupComponent
     super(injector);
   }
 
-  override getRequestData(authData: IAuthenticationToken): IMxmBaseRequest<IHeritageGroupGetRequest> {
-    if (!this.filterForm.get("inativo")!.value)
+  override getRequestData(authData: IAuthenticationToken)
+    : IMxmBaseRequest<IHeritageGroupGetRequest> {
+
+      if (!this.filterForm.get("inativo")!.value)
       this.filterForm.patchValue({ ["inativo"]: { name: '', value: '' } });
 
     return {
